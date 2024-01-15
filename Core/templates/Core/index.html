@@ -1,13 +1,27 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        {% load static %}
-        <link rel="stylesheet" type="text/css" href="{% static 'Core/style.css' %}" />
-        <title>Hello, Django</title>
-    </head>
-    <body>
-       <span> Hello there!</span>
-       <p>Hi</p>
-    </body>
-</html>
+{% extends "core/base.html" %}
+
+{% block title %}
+Index
+{% endblock title %}
+
+{% block content %}
+
+<span> Hello there!</span>
+
+{% for collab in collabs %}
+    <div>
+        <h2>{{ collab.title }}</h2>
+        <p>{{ collab.description }}</p>
+        <p>Created at: {{ collab.created_at }}</p>
+        <p>Tags:</p>
+        <ul>
+            {% for tag in collab.tags.all %}
+                <li>{{ tag.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+{% empty %}
+    <p>No collaborations to display.</p>
+{% endfor %}
+
+{% endblock %}

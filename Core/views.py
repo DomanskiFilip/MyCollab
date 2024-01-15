@@ -1,8 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from collabs.models import Collab, CollabTag
 
-def home (request):
+def home(request):
+    active_collabs = Collab.objects.filter(active=True)
     return render(
         request,
         'Core/index.html',
+        {'collabs': active_collabs}
     )
+    
+    
