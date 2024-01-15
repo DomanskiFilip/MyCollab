@@ -4,18 +4,32 @@
         <meta charset="utf-8" />
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'Core/style.css' %}" />
+        <script src="{% static 'Core/script.js' %}"></script>
         <title>MDX Collab Hub</title>
     </head>
+    <body>
+
+    <header>
+        <button onclick="location.reload();"><h1>MDX Collab</h1></button>
+    </header>
 
     <nav>
         <ul>
-            nav bar
+            <li><a href="">Create Collab</a></li>
+            <li><a href="">HOME</a></li>
+            <li><a href="">My Collabs</a></li>
+            <li><a href="">Sign In</a> | <a href="">Login</a></li>
         </ul>
-        <p>theres {{ active_collabs_count }} active collabs!</p>
+        <p>there are {{ active_collabs_count }} active collabs!</p>
     </nav>
 
 
-    <body>
+    <main>
         {% block content %}{% endblock %}
+    </main>
+
+    <article class="spacer"></article>
+    <footer>© <span id="year"> </span> github link: <a href="https://github.com/DomanskiFilip/MyCollab"><img src="{% static 'img/logo_github.png' %}" alt=""></a></footer>
+
     </body>
 </html>
