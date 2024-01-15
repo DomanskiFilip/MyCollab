@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'Core/style.css' %}" />
+        <title>MDX Collab Hub</title>
+    </head>
+
+    <nav>
+        <ul>
+            nav bar
+        </ul>
+        <p>theres {{ active_collabs_count }} active collabs!</p>
+    </nav>
+
+
+    <body>
+        {% block content %}{% endblock %}
+    </body>
+</html>
