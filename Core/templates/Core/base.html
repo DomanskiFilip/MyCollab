@@ -15,15 +15,17 @@
     </header>
 
     <nav>
+        <ul></ul>
         <ul>
             <li><a href="">Create Collab</a></li>
             <li><a href="">HOME</a></li>
             <li><a href="">My Collabs</a></li>
+        </ul>
+        <ul>
             <li><a href="">Sign In</a> | <a href="">Login</a></li>
         </ul>
-        <p>there are {{ active_collabs_count }} active collabs!</p>
     </nav>
-
+    <p id="activeCollabs">there are {{ active_collabs_count }} active collabs!</p>
 
     <main>
         {% block content %}{% endblock %}
