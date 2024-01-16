@@ -1,0 +1,23 @@
+{% extends 'core/base.html' %}
+{% block title %}
+Signup
+{% endblock title %}
+{% load static %}
+{% block content %}
+  
+
+
+
+{% for tag_name in collab.get_tag_names %}
+<p>{{ tag_name }}</p>
+{% comment %} <img class="icon" src="{% static 'images/icons/'|add:tag_name|add:'.png' %}" alt="{{ tag_name }}"/>  {% endcomment %}
+{% endfor %}
+
+
+  <p> {{collab.title}}</p>
+  <p> {{ collab.description}}</p>
+
+
+  <a href="{% url 'Core:index' %}" class="btn">Back to Collabs</a>
+
+{% endblock content %} 
