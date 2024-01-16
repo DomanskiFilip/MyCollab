@@ -19,6 +19,7 @@ Index
                 <li>{{ tag.name }}</li>
             {% endfor %}
         </ul>
+        <a href="{% url 'collabs:collab' collab.id %}" class="">Collab details</a>
     </div>
 {% empty %}
     <p>No collaborations to display.</p>
