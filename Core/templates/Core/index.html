@@ -6,23 +6,29 @@ Index
 
 {% block content %}
 
-<span> Hello there!</span>
-
+<section id="collabListWrapper">
 {% for collab in collabs %}
-    <div>
-        <h2>{{ collab.title }}</h2>
-        <p>{{ collab.description }}</p>
+    <a href="{% url 'collabs:collab' collab.id %}" class="collabInfoBar">
+        <section class="collabInfoBarHeader">
+            <h2>{{ collab.title }}</h2>
+            <h2>Tags:</h2>
+        </section>
+
+        <section class="collabInfoBarWrapper">
+            <span>{{ collab.description }}</span>
+            <ul>
+                {% for tag in collab.tags.all %}
+                    <li>{{ tag.name }}</li>
+                {% endfor %}
+            </ul>       
+        </section>
         <p>Created at: {{ collab.created_at }}</p>
-        <p>Tags:</p>
-        <ul>
-            {% for tag in collab.tags.all %}
-                <li>{{ tag.name }}</li>
-            {% endfor %}
-        </ul>
-        <a href="{% url 'collabs:collab' collab.id %}" class="">Collab details</a>
-    </div>
+    </a>  
+
 {% empty %}
     <p>No collaborations to display.</p>
 {% endfor %}
+
+</section>
 
 {% endblock %}
