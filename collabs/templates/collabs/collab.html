@@ -12,13 +12,15 @@ Signup
 <p>{{ tag_name }}</p>
 {% comment %} <img class="icon" src="{% static 'images/icons/'|add:tag_name|add:'.png' %}" alt="{{ tag_name }}"/>  {% endcomment %}
 {% endfor %}
-<a href="{% url 'Core:index' %}" class="btn"> << </a>
+<!-- <a href="{% url 'Core:index' %}" class="btn"> << </a> -->
 <section id="collabWrapper">
-  <h2> {{collab.title}}</h2>
-
+  <nav>
+    <a href="{% url 'Core:index' %}" class="btn"> << </a>
+   <h2> {{collab.title}}</h2>
+  </nav>
   <p> {{ collab.description}}</p>
   <article class="spacer"></article>
-  <a href="{% url 'Core:index' %}" class="btn">Back to Collabs</a>
+ <!-- <a href="{% url 'Core:index' %}" class="btn">Back to Collabs</a> -->
 </section>
 
 {% endblock content %} 
