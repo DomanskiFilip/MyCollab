@@ -6,7 +6,7 @@ Index
 
 {% block content %}
 
-<section id="collabListWrapper">
+<main id="collabListWrapper">
 {% for collab in collabs %}
     <a href="{% url 'collabs:collab' collab.id %}" id="collabInfoBar">
         <section id="collabInfoBarHeader">
@@ -16,7 +16,7 @@ Index
 
         <section id="collabInfoBarWrapper">
             <span>{{ collab.description }}</span>
-            <img style="max-height: 200px; max-width: 300px;" src="{{ collab.image.url }}" alt="collab image">
+            <img src="{{ collab.image.url }}" alt="collab image">
             <ul>
                 {% for tag in collab.tags.all %}
                     <li>{{ tag.name }}</li>
@@ -30,6 +30,6 @@ Index
     <p>No collaborations to display.</p>
 {% endfor %}
 
-</section>
+</main>
 
 {% endblock %}

@@ -12,19 +12,18 @@ Signup
 <p>{{ tag_name }}</p>
 
 {% endfor %}
-<!-- <a href="{% url 'Core:index' %}" class="btn"> << </a> -->
-<section id="collabWrapper">
+<main id="collabWrapper">
   <nav>
     <a href="{% url 'Core:index' %}" class="btn"> << </a>
    <h2> {{collab.title}}</h2>
   </nav>
-  <p> {{ collab.description}}</p>
-
-
-  <img style="max-height: 400px; max-width: 600px;" src="{{ collab.image.url }}" alt="{{ collab.title }} Image">
-  <!-- <article class="spacer"></article> -->
- <!-- <a href="{% url 'Core:index' %}" class="btn">Back to Collabs</a> -->
-
-</section>
+  <section id="collabContent">
+    <span> {{ collab.description}}</span>
+    <section id="imgContainer"> 
+      <img src="{{ collab.image.url }}" alt="{{ collab.title }} Image"> 
+      <img src="{{ collab.image.url }}" alt="{{ collab.title }} Image">
+    </section>
+  </section>
+</main>
 
 {% endblock content %} 

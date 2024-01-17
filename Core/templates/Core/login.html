@@ -2,9 +2,9 @@
 {% block title %}Login{% endblock title %}
 
 {% block content %}
-
-        <h1>Sign in</h1>
-        <form method="post" action=".">
+    <main id="SignInWrapper">
+        <h2>Sign in</h2>
+        <form method="post" action="." id="SignInForm">
             {% csrf_token %}
             {{ form.non_field_errors }}
             <div>
@@ -15,7 +15,7 @@
                 <label>Password:</label><br>
                 {{ form.password }}
             </div>
-            <button>Login</button>
+            <button class="btn">Login</button>
         </form>
-
+    </main>
 {% endblock content %} 
