@@ -11,14 +11,14 @@
 
     <header>
         
-        <a href="{% url 'Core:index' %}" class="btn"><button><h1>MDX Collab</h1></button></a>
+        <button onclick="location.reload()"><h1>MDX Collab</h1></button> <!-- MDX Collab button reloads current page -->
     </header>
 
     <nav>
         <ul></ul>
         <ul>
             <li><a href="">Create Collab</a></li>
-            <li><a href="">HOME</a></li>
+            <li><a href="{% url 'Core:index' %}">HOME</a></li> <!-- Home button goes to landing page-->
             <li><a href="">My Collabs</a></li>
         </ul>
         <ul>
