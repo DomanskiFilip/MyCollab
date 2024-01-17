@@ -10,3 +10,7 @@ def collab(request, pk):
     return render(request, 'collabs/collab.html', {
         'collab' : collab,
     })
+    
+    
+    
+

@@ -1,0 +1,67 @@
+{% extends 'core/base.html' %}
+{% load i18n %}
+{% load static %}
+{% block title %}
+{% trans "Rejestracja" %}
+{% endblock title %}
+
+{% block content %}
+    <div class="formBody" style="width: 92vw">
+        <div id="dyn" style="transition: opacity 0.4s ease-in-out w-full;">
+        <h1 class="mb-6 text-3xl">{% trans "Register a new account" %}</h1>
+        <form method="post" action=".">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% if form.errors or form.non_field_errors %}
+                <div class="mb-3 p-6 bg-red-100 rounded-xl">
+                    {% for field in form %}
+                        {{ field.errors }}
+                    {% endfor %}
+                    {{ form.non_field_errors }}
+                </div>
+            {% endif %}
+            <div class="mb-3">
+                <label class="inline-block mb-2">{% trans "Nazwa Uzytkownika" %}:</label><br>
+                {{ form.username }}
+            </div>
+            <div class="mb-3">
+                <label class="inline-block mb-2">{% trans "Adres Email" %}:</label><br>
+                {{ form.email }}
+            </div>
+            <div class="mb-3">
+                <label class="inline-block mb-2">{% trans "Czym zajmujesz sie w muzyce" %}?</label><br>
+                {{ form.profesja }}
+            </div>
+            <div class="mb-3">
+                <label class="inline-block mb-2">{% trans "Haslo" %}:</label><br>
+                {{ form.password1 }}
+            </div>
+            <div class="mb-3">
+                <label class="inline-block mb-2">{% trans "Powtorz Haslo" %}</label><br>
+                {{ form.password2 }}
+            </div>
+            <div class="signupChecks">
+            <div class="mb-3">
+                {{ form.captcha }}
+            </div>  
+            <div class="mb-3 checkbox-div" style="margin: 10px; padding: 10px; border-radius: 10px">
+                <input type="checkbox" id="privacyPolicyCheckbox" required>
+                <label for="privacyPolicyCheckbox">I agree to the <button class="btn-primary-light" onclick="showConfirmation()">{% trans "Polisa ochrony danych" %}</button></label>
+            </div>
+        </div>
+            
+            
+            
+
+        <div style="display: flex; justify-content: center;">
+            <button class="py-4 w-full text-lg bg-teal-500 hover:bg-teal-700 rounded-xl">{% trans "Zarejestruj się" %}</button>
+        </div>
+        </form>
+    </div>
+    </div>
+
+    <script>var policy = "{{ policy|escapejs }}";</script>
+    <script src="{% static 'js/signup.js' %}"></script>
+
+    
+{% endblock content %} 
