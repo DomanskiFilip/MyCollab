@@ -10,14 +10,14 @@ Signup
 
 {% for tag_name in collab.get_tag_names %}
 <p>{{ tag_name }}</p>
-{% comment %} <img class="icon" src="{% static 'images/icons/'|add:tag_name|add:'.png' %}" alt="{{ tag_name }}"/>  {% endcomment %}
+
 {% endfor %}
 
 
   <p> {{collab.title}}</p>
   <p> {{ collab.description}}</p>
-
-
+  <img style="max-height: 400px; max-width: 600px;" src="{{ collab.image.url }}" alt="{{ collab.title }} Image">
+        
   <a href="{% url 'Core:index' %}" class="btn">Back to Collabs</a>
 
 {% endblock content %} 

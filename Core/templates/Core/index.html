@@ -16,6 +16,7 @@ Index
 
         <section class="collabInfoBarWrapper">
             <span>{{ collab.description }}</span>
+            <img style="max-height: 200px; max-width: 300px;" src="{{ collab.image.url }}" alt="collab image">
             <ul>
                 {% for tag in collab.tags.all %}
                     <li>{{ tag.name }}</li>
