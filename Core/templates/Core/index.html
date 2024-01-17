@@ -8,13 +8,13 @@ Index
 
 <section id="collabListWrapper">
 {% for collab in collabs %}
-    <a href="{% url 'collabs:collab' collab.id %}" class="collabInfoBar">
-        <section class="collabInfoBarHeader">
+    <a href="{% url 'collabs:collab' collab.id %}" id="collabInfoBar">
+        <section id="collabInfoBarHeader">
             <h2>{{ collab.title }}</h2>
             <h2>Tags:</h2>
         </section>
 
-        <section class="collabInfoBarWrapper">
+        <section id="collabInfoBarWrapper">
             <span>{{ collab.description }}</span>
             <img style="max-height: 200px; max-width: 300px;" src="{{ collab.image.url }}" alt="collab image">
             <ul>

@@ -12,12 +12,16 @@ Signup
 <p>{{ tag_name }}</p>
 
 {% endfor %}
+<a href="{% url 'Core:index' %}" class="btn"> << </a>
+<section id="collabWrapper">
+  <h2> {{collab.title}}</h2>
 
-
-  <p> {{collab.title}}</p>
   <p> {{ collab.description}}</p>
+
   <img style="max-height: 400px; max-width: 600px;" src="{{ collab.image.url }}" alt="{{ collab.title }} Image">
         
+
   <a href="{% url 'Core:index' %}" class="btn">Back to Collabs</a>
+</section>
 
 {% endblock content %} 

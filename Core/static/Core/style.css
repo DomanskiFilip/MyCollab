@@ -122,6 +122,11 @@ nav {
     margin-bottom: 5rem;
 }
 
+main {
+    width: 70vw;
+    height: 50vh;
+}
+
 footer {
     height: 5rem;
     width: 100vw;
@@ -184,7 +189,7 @@ footer {
     }
 
 
-    .collabInfoBar {
+    #collabInfoBar {
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -196,15 +201,15 @@ footer {
         margin-bottom: 0.1rem;
     }
 
-        .collabInfoBar:hover {
+        #collabInfoBar:hover {
             background-color: var(--action-highlite);
         }
 
-        .collabInfoBar p {
+        #collabInfoBar p {
             text-align: center;
         }
 
-            .collabInfoBarHeader {
+            #collabInfoBarHeader {
                 display: flex;
                 flex-direction: row;
                 justify-content: space-around;
@@ -214,17 +219,17 @@ footer {
                 border-bottom: 0.5px solid var(--shadow);
             }
 
-            .collabInfoBarWrapper {
+            #collabInfoBarWrapper {
                 display: flex;
                 flex-direction: row;
             }
 
-                .collabInfoBarWrapper span {
+                #collabInfoBarWrapper span {
                     text-wrap: pretty;
                     width: 50%;
                 }
 
-                .collabInfoBarWrapper ul {
+                #collabInfoBarWrapper ul {
                     display: flex;
                     flex-direction: row;
                     justify-content: center;
@@ -232,13 +237,52 @@ footer {
                     width: 50%;
                 }
 
-                    .collabInfoBarWrapper ul li {
+                    #collabInfoBarWrapper ul li {
                         margin: 0.5rem;
                         padding: 0.5rem;
                         border-radius: 10px;
                         background-color: var(--tag-bg);
                     }
 
-                    .collabInfoBarWrapper ul li:hover {
+                    #collabInfoBarWrapper ul li:hover {
                         background-color: var(--tag-bg-hover);
                     }
+
+/* css for collab.html */
+
+
+.btn {
+    background-color: var(--action-highlite);
+    color: var(--tag-bg);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--text-highlite);
+    border-radius: 10px;
+    text-decoration: none;
+}
+
+    .btn:hover {
+        background-color: var(--tag-bg-hover);
+        color: var(--text);
+    }
+
+#collabWrapper {
+    width: 100%;
+    height: 90%;
+    border: 1px solid var(--text-highlite);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 1.2rem;
+}
+
+    #collabWrapper h2 {
+        width: 100%;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+        margin-bottom: 0.5rem;
+        border-bottom: 0.5px solid var(--shadow);
+    }
+
