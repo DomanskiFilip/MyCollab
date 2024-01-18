@@ -20,8 +20,9 @@ Signup
   <section id="collabContent">
     <span> {{ collab.description}}</span>
     <section id="imgContainer"> 
-      <img src="{{ collab.image.url }}" alt="{{ collab.title }} Image"> 
-      <img src="{{ collab.image.url }}" alt="{{ collab.title }} Image">
+      {% for image in images %}
+     <img src="{{ image.image.url }}" alt="{{ collab.title }}">
+    {% endfor %}
     </section>  
   </section>
   <a href="{% url 'Core:index' %}" class="btn"> Go Back </a>
