@@ -44,9 +44,6 @@ body {
     background-color: var(--tag-bg-hover);
 }
 
-
-
-
 /* css for Base.html */
 
 header {
@@ -234,8 +231,11 @@ footer {
             }
 
                 #collabInfoBarWrapper span {
-                    text-wrap: pretty;
                     width: 50%;
+                    height: 5rem;
+                    overflow: scroll;
+                    overflow-x: hidden;
+                    text-overflow: ellipsis;
                 }
 
                 #collabInfoBarWrapper img{
@@ -325,6 +325,7 @@ footer {
         flex-direction: column;
         margin: 1rem;
         margin-bottom: 0;
+        text-overflow: ellipsis;
     }
 
     #imgContainer {
@@ -337,7 +338,7 @@ footer {
     }
 
         #imgContainer img {
-            width: 50%;
+            width: 20rem;
             height: 20rem;
             object-fit: scale-down;
             margin-bottom: 1rem;
@@ -388,3 +389,72 @@ footer {
             padding: 0.5rem;
             margin: 0.5rem;
         }
+
+/* css for new.html */
+
+#NewCollabWrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+    #NewCollabWrapper  h2 {
+        width: 100%;
+        text-align: center;
+        font-size: 2rem;
+    }
+
+#CollabForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+    #CollabForm #wrapper {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+    }
+
+    #CollabForm input {
+        width: 100%;
+        padding: 0.5rem;
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+        border: 1px solid var(--text-highlite);
+        border-radius: 10px;
+        background-color: var(--main);
+        color: var(--text)
+    }
+
+    #CollabForm input[type="checkbox"] {
+        width: 1rem;
+        height: 1rem;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    #CollabForm textarea {
+        background-color: var(--main);
+        color: var(--text);
+        border: 1px solid var(--text-highlite);
+    }
+
+    #CollabForm .btn{
+            padding: 0.5rem;
+            margin: 0.5rem;
+        }
+
+#id_tags {
+    width: 100%;
+    background-color: var(--main);
+    color: var(--text);
+    border: 1px solid var(--text-highlite);
+}

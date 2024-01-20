@@ -10,7 +10,7 @@ Index
 {% for collab, main_image in collabs_withImg %}
     <a href="{% url 'collabs:collab' collab.id %}" id="collabInfoBar">
         <section id="collabInfoBarHeader">
-            <img style="width: 190px; height: 240px" src="{{ main_image.image.url }}" alt="{{ collab.title }}">
+            
    
             <h2>{{ collab.title }}</h2>
             <h2>Tags:</h2>
@@ -18,7 +18,7 @@ Index
 
         <section id="collabInfoBarWrapper">
             <span>{{ collab.description }}</span>
-
+            <img src="{{ main_image.image.url }}" alt="{{ collab.title }}">
             <ul>
                 {% for tag in collab.tags.all %}
                     <li>{{ tag.name }}</li>

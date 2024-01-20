@@ -1,38 +1,13 @@
-{% extends 'core/base.html' %}
-{% block title %}
-New Collab
-{% endblock title %}
-{% load static %}
-{% block content %}
-  
 
+// Get all checkboxes
+var checkboxes = document.querySelectorAll('input[type=checkbox]');
 
-<h1>New Collab</h1>
-
-<form method="post" enctype="multipart/form-data">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {{ formset.management_form }}
-  <div style="flex-direction: column; display: flex;">
-
-    {% for form in formset %}
-    {{ form.image.label_tag }} {{ form.image }}
-    <div id="preview{{ forloop.counter0 }}"></div>
-    {{ form.is_main.label_tag }} {{ form.is_main }}
-{% endfor %}
-  </div>
-  <button type="submit">Create</button>
-</form>
-
-
-
-
-
-<script>
-var checkboxes = document.querySelectorAll('input[type=checkbox].checkbox_is_main');
+// Add event listener to each checkbox
 checkboxes.forEach(function(checkbox) {
     checkbox.addEventListener('change', function() {
+        // When a checkbox is checked
         if (this.checked) {
+            // Uncheck all other checkboxes
             checkboxes.forEach(function(otherCheckbox) {
                 if (otherCheckbox !== checkbox) {
                     otherCheckbox.checked = false;
@@ -73,8 +48,13 @@ checkboxes.forEach(function(checkbox) {
           canvas.width = width;
           canvas.height = height;
   
+          // Draw the image on the canvas
           ctx.drawImage(img, 0, 0, width, height);
+  
+          // Get the data URL of the resized image
           var dataUrl = canvas.toDataURL('image/jpeg');
+  
+          // Display the resized image
           document.querySelector('#preview' + input.name.replace(/\D/g, '')).innerHTML = '<img src="' + dataUrl + '">';
         };
         img.src = e.target.result;
@@ -82,29 +62,3 @@ checkboxes.forEach(function(checkbox) {
       reader.readAsDataURL(input.files[0]);
     });
   });
-</script>
-=======
-<main id="NewCollabWrapper">
-  <h1>New Collab</h1>
-
-  <form method="post" enctype="multipart/form-data" id="CollabForm">
-    {% csrf_token %}
-    {{ form }}
-    {{ formset.management_form }}
-
-      {% for form in formset %}
-      {{ form.image.label_tag }} {{ form.image }}
-      
-    <span id="preview{{ forloop.counter0 }}"></span> 
-    <section id="wrapper">
-        {{ form.is_main.label_tag }} {{ form.is_main }}
-    </section>
-  {% endfor %}
-    <button class="btn" type="submit">Create</button>
-  </form>
-</main>
-
-<script src="{% static 'Core/scriptNew.js' %}"></script>
-
-
-{% endblock content %} 
