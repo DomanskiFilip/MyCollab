@@ -62,3 +62,6 @@ checkboxes.forEach(function(checkbox) {
       reader.readAsDataURL(input.files[0]);
     });
   });
+
+
+  
