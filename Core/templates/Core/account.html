@@ -8,5 +8,14 @@
 
         <h1>Hi, {{ user.username }}!</h1>
         
+        {% for collab in collabs %}
+
+                <p>{{ collab.title }}</p>
+                <p>{{ collab.description }}</p>
+                <p>{{ collab.date }}</p>
+                <p>{{ collab.user }}</p>
+                <a href="{% url 'collabs:edit' collab.id %}">edit</a>
+
+        {% endfor %}
        
 {% endblock %}
