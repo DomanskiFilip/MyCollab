@@ -276,6 +276,7 @@ footer {
     border: 1px solid var(--text-highlite);
     border-radius: 10px;
     text-decoration: none;
+    cursor: pointer;
 }
 
     .btn:hover {
@@ -383,12 +384,17 @@ footer {
         border-radius: 10px;
         background-color: var(--main);
         color: var(--text)
-}
+    }
 
     #SignInForm .btn{
             padding: 0.5rem;
             margin: 0.5rem;
         }
+
+    .errorlist{
+        list-style-type: none;
+        margin-bottom: 1rem;
+    }
 
 /* css for new.html */
 
