@@ -451,6 +451,9 @@ footer {
         background-color: var(--main);
         color: var(--text);
         border: 1px solid var(--text-highlite);
+        resize: none;
+        overflow: scroll;
+        overflow-x: hidden;
     }
 
     #CollabForm .btn{
@@ -458,9 +461,17 @@ footer {
             margin: 0.5rem;
         }
 
-#id_tags {
+.checkbox_tags {
     width: 100%;
+    height: 5rem;
     background-color: var(--main);
     color: var(--text);
     border: 1px solid var(--text-highlite);
+    overflow-y: scroll;
 }
+
+    .checkbox_tags input[type="checkbox"]{
+        overflow-y: hidden;
+        width: 100%;
+        height: 100%;
+    }

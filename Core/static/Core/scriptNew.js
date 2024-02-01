@@ -1,6 +1,6 @@
 
 // Get all checkboxes
-var checkboxes = document.querySelectorAll('input[type=checkbox]');
+var checkboxes = document.querySelectorAll('.checkbox_is_main');
 
 // Add event listener to each checkbox
 checkboxes.forEach(function(checkbox) {
