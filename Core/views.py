@@ -59,5 +59,5 @@ def account(request):
         'collabs' : collabs
     }
 
-    return render(request, 'core/account.html', context)
+    return render(request, 'core/mycollabs.html', context)
 

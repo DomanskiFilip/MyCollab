@@ -1,0 +1,19 @@
+{% extends 'core/base.html' %}
+
+
+{% block title %}Mycollabs{% endblock title %}
+
+{% block content %}
+
+<h1 id="myCollabsHi">Hi, {{ user.username }}!</h1>
+        
+        <main id="myCollabs">    
+        {% for collab in collabs %}
+        <section id="myCollabsWrapper">
+                <span>{{ collab.title }}</span>
+                <span>Created: {{ collab.created_at }}</span>
+                <a class="btn" href="{% url 'collabs:edit' collab.id %}">edit</a>
+        </section>
+        {% endfor %}
+        </main>
+{% endblock %}

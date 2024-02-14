@@ -1,8 +1,10 @@
 :root {
-    --main: #080e12;
-    --text: #f7dfdf;
+    --main: #ffffff;
+    --secondary: #7D0A0A;
+    --text: #000000;
+    --secondary-text: #F3EDC8;
     --text-highlite: #ff1500;
-    --action-highlite: #7286D3;
+    --action-highlite: #BF3131;
     --tag-bg: #fc4a39;
     --tag-bg-hover: #d94133;
     --shadow: #2f2f2f;
@@ -18,6 +20,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     background-color: var(--main);
     min-height: 100vh;
     width: 100vw;
@@ -30,7 +33,7 @@ body {
     width: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: var(--text);
+    background: var(--main);
     box-shadow: inset 0 0 5px var(--shadow); 
     border-radius: 10px;
 }
@@ -51,13 +54,16 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--main);
+    background-color: var(--secondary);
+    color: var(--secondary-text);
 }
 
     header button {
-        background-color: var(--main);
+        background-color: var(--secondary);
         border: none;
         outline: none;
+        display: flex;
+        flex-direction: row;
     }
 
         header button:hover {
@@ -72,14 +78,26 @@ header {
         }
 
             header button h1:hover {
-                color: var(--text);
+                color: var(--secondary-text);
             }
+    header img {
+        height: 5rem;
+        width: 5rem;
+        border-radius: 10px;
+        margin-left: 0.5rem;
+    }
+
+        header img:hover {
+            background-color: var(--text-highlite);
+        
+    }
 
 nav {
     width: 100%;
     display: flex;
     flex-direction: row;
-    align-items: flex-end;
+    align-items: center;
+    background-color: var(--secondary);
 }
 
     nav ul {
@@ -87,9 +105,9 @@ nav {
         flex-direction: row;
         justify-content: flex-end;
         list-style-type: none;
-        border-bottom: 1px solid var(--text-highlite);
-        margin-bottom: 1rem;
-        width: 100%;
+        width: 100%;  
+        color: var(--secondary-text);
+        text-align: center;
     }
 
     nav ul:nth-of-type(2) {
@@ -99,7 +117,7 @@ nav {
         nav ul li {
             display: flex;
             flex-direction: column;
-            justify-content: end;
+            justify-content: center;
             height: 1rem;
             padding: 1rem;
         }
@@ -108,13 +126,14 @@ nav {
                 text-decoration: none;
                 color: var(--text);
                 font-size: 1.5rem;
+                color: var(--secondary-text);
             }
 
             nav ul li:nth-of-type(1)  {
                 display: flex;
                 flex-direction: row;
                 align-items: flex-end;
-            }
+            }   
 
                 nav ul li:nth-of-type(1) a {
                     font-size: 1rem;
@@ -126,19 +145,36 @@ nav {
 
                 nav ul li a:hover {
                     color: var(--text-highlite);
-                    border-bottom: 1px solid var(--text-highlite);
+                    text-decoration: none;
+                }
+            
+                nav ul:nth-of-type(3) li a:nth-of-type(1) {
+                    padding-right: 1rem;
                 }
 
+                nav ul:nth-of-type(2) li:nth-of-type(1) {
+                    align-items: center;
+                }
+
+                nav ul:nth-of-type(2) li:nth-of-type(2) a img {
+                    width: 50px;
+                    height: 50px;
+                    padding-bottom: 0.5rem;
+                }
+
+
     nav ul:nth-of-type(3) li a:nth-of-type(1) {
-        margin-right: 1rem;
+        padding-right: 1rem;
     }
 
     nav ul:nth-of-type(3) li a:nth-of-type(2) {
-        margin-left: 1rem;
+        padding-left: 1rem;
     }
 
-#activeCollabs:nth-of-type(1){
+#activeCollabs{
+    margin-top: 1rem;
     margin-bottom: 5rem;
+    text-align: center;
 }
 
 footer {
@@ -150,6 +186,8 @@ footer {
     align-items: center;
     margin-top: 2rem;
     border-top: 1px solid var(--text-highlite);
+    background-color: var(--secondary);
+    color: var(--secondary-text);
 }
 
     footer a img {
@@ -177,9 +215,9 @@ footer {
 #collabListWrapper {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 70vw;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     max-height: 50vh;
     overflow-y: scroll;
 }
@@ -188,7 +226,7 @@ footer {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 99.8%;
+        width: 70vw;
         text-decoration: none;
         color: var(--text); 
         padding: 0;
@@ -451,6 +489,10 @@ footer {
         background-color: var(--main);
         color: var(--text);
         border: 1px solid var(--text-highlite);
+        resize: none;
+        overflow: scroll;
+        overflow-x: hidden;
+        height: 5rem;
     }
 
     #CollabForm .btn{
@@ -458,9 +500,63 @@ footer {
             margin: 0.5rem;
         }
 
-#id_tags {
+.checkbox_tags {
     width: 100%;
+    height: 7rem;
     background-color: var(--main);
     color: var(--text);
-    border: 1px solid var(--text-highlite);
+    overflow-y: scroll;
 }
+
+    .checkbox_tags input[type="checkbox"]{
+        overflow-y: hidden;
+        width: 100%;
+        height: 100%;
+    }
+
+/* mycollabs (collab edit list) style */
+#myCollabsHi {
+    margin-bottom: 1rem;
+}
+
+
+#myCollabs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    overflow-y: scroll;
+}
+
+
+#myCollabsWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 70vw;
+    border: solid 1px var(--text-highlite);
+}
+
+    #myCollabsWrapper:hover {
+        background-color: var(--action-highlite);
+    }
+
+
+    #myCollabsWrapper  span{
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+        #myCollabsWrapper  span:nth-of-type(1){
+            justify-self: flex-start;
+            flex: 1;
+        }
+
+    #myCollabsWrapper .btn {
+        border: 0px;
+        border-radius: 0%;
+        margin: 0;
+        padding: 1rem;
+    }

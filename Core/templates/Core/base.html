@@ -10,30 +10,29 @@
     <body>
 
     <header>
-        
-        <button onclick="location.reload()"><h1>MDX Collab</h1></button> <!-- MDX Collab button reloads current page -->
+        <button onclick="location.reload()"><img src="{% static 'img/mdx_logo.png' %}"  alt="mdx logo"><h1>Collab</h1></button>
     </header>
 
     <nav>
         <ul></ul>
         <ul>
             <li><a href="{% url 'collabs:new_collab' %}">Create Collab</a></li>
-            <li><a href="{% url 'Core:index' %}">HOME</a></li>
+            <li><a href="{% url 'Core:index' %}"><img src="{% static 'img/home.png' %}"  alt="home icon from flaticon.com"></a></li>
             <li><a href="{% url 'Core:account' %}">My Collabs</a></li>
-
         </ul>
         <ul>
             <li>{% if request.user.is_authenticated %}<a href="{% url 'Core:logout' %}">Logout</a>{% else %} <a href="">Sign Up</a> | <a href="{% url 'Core:login' %}">Login</a>{% endif %}</li>
         </ul>
     </nav>
-    <p id="activeCollabs">there are {{ active_collabs_count }} active collabs!</p>
+    
+    <span id="activeCollabs">There are {{ active_collabs_count }} active collabs!</span>
 
     
         {% block content %}{% endblock %}
     
 
     <article class="spacer"></article>
-    <footer>© <span id="year"> </span> github link: <a href="https://github.com/DomanskiFilip/MyCollab"><img src="{% static 'img/logo_github.png' %}" alt=""></a></footer>
+    <footer>© <span id="year"> </span> github link: <a href="https://github.com/DomanskiFilip/MyCollab"><img src="{% static 'img/logo_github.png' %}" alt="github logo"></a></footer>
 
     </body>
 </html>
