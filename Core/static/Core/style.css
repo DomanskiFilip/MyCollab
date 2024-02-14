@@ -1,8 +1,9 @@
 :root {
-    --main: #080e12;
-    --text: #f7dfdf;
+    --main: #FFE5D9;
+    --secondary: #940505;
+    --text: #000000;
     --text-highlite: #ff1500;
-    --action-highlite: #7286D3;
+    --action-highlite: #A76859;
     --tag-bg: #fc4a39;
     --tag-bg-hover: #d94133;
     --shadow: #2f2f2f;
@@ -30,7 +31,7 @@ body {
     width: 10px;
 }
 ::-webkit-scrollbar-track {
-    background: var(--text);
+    background: var(--main);
     box-shadow: inset 0 0 5px var(--shadow); 
     border-radius: 10px;
 }
@@ -51,11 +52,11 @@ header {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: var(--main);
+    background-color: var(--secondary);
 }
 
     header button {
-        background-color: var(--main);
+        background-color: var(--secondary);
         border: none;
         outline: none;
     }
@@ -80,6 +81,7 @@ nav {
     display: flex;
     flex-direction: row;
     align-items: flex-end;
+    background-color: var(--secondary);
 }
 
     nav ul {
@@ -88,8 +90,7 @@ nav {
         justify-content: flex-end;
         list-style-type: none;
         border-bottom: 1px solid var(--text-highlite);
-        margin-bottom: 1rem;
-        width: 100%;
+        width: 100%;  
     }
 
     nav ul:nth-of-type(2) {
@@ -138,6 +139,7 @@ nav {
     }
 
 #activeCollabs:nth-of-type(1){
+    margin-top: 1rem;
     margin-bottom: 5rem;
 }
 
@@ -150,6 +152,7 @@ footer {
     align-items: center;
     margin-top: 2rem;
     border-top: 1px solid var(--text-highlite);
+    background-color: var(--secondary);
 }
 
     footer a img {
@@ -177,9 +180,9 @@ footer {
 #collabListWrapper {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: flex-start;
-    width: 70vw;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
     max-height: 50vh;
     overflow-y: scroll;
 }
@@ -188,7 +191,7 @@ footer {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        width: 99.8%;
+        width: 70vw;
         text-decoration: none;
         color: var(--text); 
         padding: 0;
@@ -454,6 +457,7 @@ footer {
         resize: none;
         overflow: scroll;
         overflow-x: hidden;
+        height: 5rem;
     }
 
     #CollabForm .btn{
@@ -463,10 +467,9 @@ footer {
 
 .checkbox_tags {
     width: 100%;
-    height: 5rem;
+    height: 7rem;
     background-color: var(--main);
     color: var(--text);
-    border: 1px solid var(--text-highlite);
     overflow-y: scroll;
 }
 
@@ -474,4 +477,51 @@ footer {
         overflow-y: hidden;
         width: 100%;
         height: 100%;
+    }
+
+/* mycollabs (collab edit list) style */
+#myCollabsHi {
+    margin-bottom: 1rem;
+}
+
+
+#myCollabs {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 70vw;
+    overflow-y: scroll;
+}
+
+
+#myCollabsWrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    width: 90%;
+    border: solid 1px var(--text-highlite);
+}
+
+    #myCollabsWrapper:hover {
+        background-color: var(--action-highlite);
+    }
+
+
+    #myCollabsWrapper  span{
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+        #myCollabsWrapper  span:nth-of-type(1){
+            justify-self: flex-start;
+            flex: 1;
+        }
+
+    #myCollabsWrapper .btn {
+        border: 0px;
+        border-radius: 0%;
+        margin: 0;
+        padding: 1rem;
     }
