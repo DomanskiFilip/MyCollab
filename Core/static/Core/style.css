@@ -311,7 +311,7 @@ footer {
             text-align: center;
       }
 
-#collabContent {
+.collabContent {
     width: 90%;
     height: 100%;
     display: flex;
