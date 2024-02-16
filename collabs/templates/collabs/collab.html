@@ -24,10 +24,11 @@ Signup
     {% for image in images %}
       {% if image %}
         <img src="{{ image.image.url }}" alt="{{ collab.title }}">
+        <span> {{ CollabImage.description_img}}</span>
       {% endif %}
     {% endfor %}
     {% if request.user == collab.user %}
-    <a href="{% url 'collabs:edit' collab.id %}">edit</a>
+    <a href="{% url 'collabs:edit' collab.id %}" class="btn">edit</a>
 {% endif %}
     </section>  
   </section>
