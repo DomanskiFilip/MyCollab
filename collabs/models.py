@@ -36,6 +36,7 @@ class CollabImage(models.Model):
     collab = models.ForeignKey(Collab, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField(upload_to='images/')
     is_main = models.BooleanField(default=False)
+    description_img = models.TextField()
 
     def __str__(self):
         return f'Image for {self.collab.title}'

@@ -15,11 +15,13 @@ New Collab
 
       {% for form in formset %}
       {{ form.image.label_tag }} {{ form.image }}
-      
+      <span class="special_label">Description: </span>
+      {{ form.description_img }}
     <span id="preview{{ forloop.counter0 }}"></span> 
     <section id="wrapper">
-        {{ form.is_main.label_tag }} {{ form.is_main }}
+          {{ form.is_main.label_tag }} {{ form.is_main }}
     </section>
+    
   {% endfor %}
     <button class="btn" type="submit">Create</button>
   </form>
