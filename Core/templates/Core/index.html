@@ -11,19 +11,18 @@ Index
     <a href="{% url 'collabs:collab' collab.id %}" id="collabInfoBar">
         <section id="collabInfoBarHeader">
             <h2>{{ collab.title }}</h2>
-            <h2>Tags:</h2>
         </section>
-
-        <section id="collabInfoBarWrapper">
-            <span>{{ collab.description }}</span>
-            <img src="{{ main_image.image.url }}" alt="{{ collab.title }}">
+            <span>{{ collab.introduction }}</span>
+        <section class="collabInfoBarWrapper">
+        <img src="{{ main_image.image.url }}" alt="{{ collab.title }}">
+         </section>
+        <section class="collabInfoBarWrapper">
+        <h2>Tags:</h2>
             <ul>
                 {% for tag in collab.tags.all %}
                     <li>{{ tag.name }}</li>
                 {% endfor %}
-            </ul>   
-            
-          
+            </ul>
         </section>
         <p>Created: {{ collab.created_at }}</p>
     </a>  

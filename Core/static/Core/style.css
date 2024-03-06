@@ -213,32 +213,40 @@ footer {
 /* css for index.html */
 
 #collabListWrapper {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    width: 90%;
     height: 65vh;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
     text-overflow: ellipsis;
 }
 
+    #collabListWrapper span {
+        width: 98%;
+        min-height: 3.3rem;
+        max-height: 20%;
+        overflow: auto;
+        overflow-x: hidden;
+        text-align: justify;
+        padding-left: 0.2rem;
+    }
+
     #collabInfoBar {
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        width: 70vw;
+        justify-content: space-around;
+        width: 29vw;
+        height: 40vh;
         text-decoration: none;
         color: var(--text); 
         padding: 0;
-        margin-bottom: 0.1rem;
-        border: 1px solid opacity(0);
+        margin-bottom: 1rem;
         z-index: 10;
     }
 
         #collabInfoBar:hover {
             background-color: var(--action-highlite);
-            border: 1px solid var(--text-highlite);
             color: var(--secondary-text);
         }
 
@@ -251,57 +259,54 @@ footer {
                 flex-direction: row;
                 justify-content: center;
                 align-items: center;
+                min-height: 20%;
+                max-height: 20%;
                 padding: 0.5rem;
                 margin-bottom: 0.5rem;
                 border-bottom: 0.5px solid var(--shadow);
             }
 
                 #collabInfoBarHeader h2:nth-of-type(1) {
-                    width: 80%;
                     text-align: center;
+                    font-size: 3rem;
+                    font-weight: bold;
                 }
 
-                #collabInfoBarHeader h2:nth-of-type(2) {
-                    width: 20%;
-                }
-
-            #collabInfoBarWrapper {
+            .collabInfoBarWrapper {
                 display: flex;
                 flex-direction: row;
+                align-items: center;
+                padding: 0.2rem;
             }
 
-                #collabInfoBarWrapper span {
-                    width: 50%;
-                    height: 5rem;
-                    overflow: scroll;
-                    overflow-x: hidden;
-                    text-overflow: ellipsis;
-                }
-
-                #collabInfoBarWrapper img{
-                    width: 50%;
-                    height: 5rem;
+                .collabInfoBarWrapper img{
+                    width: 100%;
+                    max-height: 7rem;
                     object-fit: scale-down;
+                    margin-top: 0.5rem;
                 }
 
-                #collabInfoBarWrapper ul {
+                .collabInfoBarWrapper ul {
                     display: flex;
                     flex-direction: row;
-                    justify-content: center;
                     list-style-type: none;
                     width: 50%;
                     height: 100%;
                 }
 
-                    #collabInfoBarWrapper ul li {
-                        height: 1.2rem;
+                    .collabInfoBarWrapper ul li {
+                        height: 1.6rem;
                         margin: 0.5rem;
                         padding: 0.5rem;
                         border-radius: 10px;
                         background-color: var(--tag-bg);
+                        text-align: center;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
                     }
 
-                    #collabInfoBarWrapper ul li:hover {
+                    .collabInfoBarWrapper ul li:hover {
                         background-color: var(--tag-bg-hover);
                     }
 
@@ -501,7 +506,7 @@ footer {
         color: var(--text);
         border: 1px solid var(--text-highlite);
         resize: none;
-        overflow: scroll;
+        overflow-y: auto;
         overflow-x: hidden;
         height: 5rem;
         width: 100%;
@@ -522,7 +527,7 @@ footer {
     height: 7rem;
     background-color: var(--main);
     color: var(--text);
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
     .checkbox_tags input[type="checkbox"]{
@@ -582,7 +587,7 @@ footer {
     justify-content: center;
     align-items: center;
     width: 100%;
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 
 
