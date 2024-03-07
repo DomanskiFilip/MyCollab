@@ -18,8 +18,8 @@ checkboxes.forEach(function(checkbox) {
 });
 
 
-  document.querySelectorAll('input[type="file"]').forEach(function(input) {
-    input.addEventListener('change', function() {
+document.querySelectorAll('input[type="file"]').forEach(function(input) {
+  input.addEventListener('change', function() {
       var reader = new FileReader();
       reader.onload = function(e) {
         var img = new Image();
@@ -60,8 +60,8 @@ checkboxes.forEach(function(checkbox) {
         img.src = e.target.result;
       };
       reader.readAsDataURL(input.files[0]);
-    });
   });
+});
 
 
   

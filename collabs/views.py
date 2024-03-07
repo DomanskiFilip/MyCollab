@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import Collab, CollabImage
 from .forms import CollabForm, CollabImageFormSet
-
+from django.shortcuts import redirect
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
 from django.contrib.auth.decorators import login_required
@@ -17,6 +17,8 @@ def collab(request, pk):
     })
     
     
+
+
 @login_required
 def create_collab(request):
     form = CollabForm(request.POST or None)
@@ -32,16 +34,22 @@ def create_collab(request):
             mainImgCount = len([form for form in forms_with_image if form.cleaned_data.get('is_main', False)])
 
             if mainImgCount == 0:
-                forms_with_image[0].instance.is_main = True
                 print('NO IMAGES MARKED AS MAIN')
             elif mainImgCount > 1:
                 print('MANY IMAGES MARKED AS MAIN')
                 return render(request, 'collabs/new.html', {'form': form, 'formset': formset, 'error': 'Only one image can be marked as main.'})
 
+            if forms_with_image:
+                forms_with_image[0].instance.is_main = True
+                forms_with_image[0].save()
+
             for form in forms_with_image:
                 collab_image = form.save(commit=False)
                 collab_image.collab = collab
                 collab_image.save()
+
+            # Redirect to the collab detail page of the newly created collab
+            return redirect('collabs:collab', pk=collab.id)
 
         else:
             print('There was an error with the form.')
