@@ -5,6 +5,7 @@ from django.shortcuts import redirect
 from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.http import require_POST
 
 
 
@@ -95,3 +96,13 @@ def delete_image(request):
         image = CollabImage.objects.get(id=image_id)
         image.delete()
     return redirect('collabs:edit', collab_id=image.collab.pk)
+
+
+
+@require_POST
+@login_required
+def collab_delete(request, pk):
+    collab = get_object_or_404(Collab, pk=pk)
+    if request.method == 'POST':
+        collab.delete()
+        return redirect('Core:index') 
