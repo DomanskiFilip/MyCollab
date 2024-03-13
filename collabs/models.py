@@ -24,8 +24,7 @@ class Collab(models.Model):
     def get_tags(self):
         return [tag.name for tag in self.tags.all()]
     
-    # normally django removed objects with foreign keys on the database level which wouldnt call the delete method in Image object
-    # overwriting the delete method to use orm:
+    
     def delete(self, *args, **kwargs):
         for image in self.images.all():
             image.delete()

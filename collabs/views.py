@@ -23,14 +23,16 @@ def collab(request, pk):
 @login_required
 def create_collab(request):
     form = CollabForm(request.POST or None)
+    formset = CollabImageFormSet(request.POST or None, request.FILES or None)
+
     if request.method == 'POST':
-        formset = CollabImageFormSet(request.POST, request.FILES)
-        if formset.is_valid() and form.is_valid():
+        if form.is_valid():
             collab = form.save(commit=False)
             collab.user = request.user
             collab.save()
             form.save_m2m()  # Save the many-to-many data
 
+        if formset.is_valid():
             forms_with_image = [form for form in formset if form.cleaned_data.get('image')]
             mainImgCount = len([form for form in forms_with_image if form.cleaned_data.get('is_main', False)])
 
@@ -40,24 +42,24 @@ def create_collab(request):
                 print('MANY IMAGES MARKED AS MAIN')
                 return render(request, 'collabs/new.html', {'form': form, 'formset': formset, 'error': 'Only one image can be marked as main.'})
 
-            if forms_with_image:
-                forms_with_image[0].instance.is_main = True
-                forms_with_image[0].save()
-
-            for form in forms_with_image:
-                collab_image = form.save(commit=False)
-                collab_image.collab = collab
-                collab_image.save()
+            for form in formset:
+                if form.cleaned_data.get('image') or form.cleaned_data.get('description'):
+                    collab_image = form.save(commit=False)
+                    collab_image.collab = collab
+                    if not forms_with_image and not collab_image.is_main:
+                        collab_image.is_main = True
+                    collab_image.save()
 
             # Redirect to the collab detail page of the newly created collab
             return redirect('collabs:collab', pk=collab.id)
 
         else:
-            print('There was an error with the form.')
+            print('There was an error with the formset.')
+
     else:
         formset = CollabImageFormSet(queryset=CollabImage.objects.none())
-    return render(request, 'collabs/new.html', {'form': form, 'formset': formset})
 
+    return render(request, 'collabs/new.html', {'form': form, 'formset': formset})
 
 @login_required
 def collab_edit(request, collab_id):
