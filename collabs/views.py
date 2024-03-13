@@ -73,9 +73,17 @@ def collab_edit(request, collab_id):
         formset = CollabImageFormSet(request.POST, request.FILES, instance=collab)
 
         if form.is_valid() and formset.is_valid():
+            forms_with_image = [form for form in formset if form.cleaned_data.get('image')]
             form.save()
             formset.save()
+            if form.cleaned_data.get('image') or form.cleaned_data.get('description'):
+                    collab_image = form.save(commit=False)
+                    collab_image.collab = collab
+                    if not forms_with_image and not collab_image.is_main:
+                        collab_image.is_main = True
+                    collab_image.save()
             return redirect('collabs:collab', pk=collab.id)
+        
     else:
         form = CollabForm(instance=collab)
         if collab.images.exists():

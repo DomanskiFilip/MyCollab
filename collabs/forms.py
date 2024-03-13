@@ -18,9 +18,18 @@ class CollabImageForm(forms.ModelForm):
         model = CollabImage
         fields = ('image', 'is_main', 'description')
         widgets = {
+            'description': forms.Textarea(attrs={'class': 'textarea_description'}),
             'image': forms.ClearableFileInput(attrs={'class': 'input_image'}),
             'is_main': forms.CheckboxInput(attrs={'class': 'checkbox_is_main'}),
-            'description': forms.Textarea(attrs={'class': 'textarea_description'}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['image'].required = True
+        self.fields['description'].required = False
+
 CollabImageFormSet = forms.inlineformset_factory(Collab, CollabImage, form=CollabImageForm, extra=3, max_num=3, can_delete=True, can_delete_extra=False)
+
+
+
+    

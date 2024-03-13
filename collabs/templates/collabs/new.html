@@ -5,6 +5,8 @@ New Collab
 {% load static %}
 {% block content %}
 
+<script src="{% static 'Core/clearPreview.js' %}"></script>
+
 <main id="NewCollabWrapper">
   <h1>New Collab</h1>
 
@@ -14,15 +16,17 @@ New Collab
     {{ formset.management_form }}
 
       {% for form in formset %}
-      {{ form.image.label_tag }} {{ form.image }}
       <span class="special_label"> Description: </span>
       {{ form.description }}
+      {{ form.image.label_tag }} {{ form.image }}
+      
     <span id="preview{{ forloop.counter0 }}"></span> 
     <section id="wrapper">
           {{ form.is_main.label_tag }} {{ form.is_main }}
     </section>
     
   {% endfor %}
+    <button class="btn" type="button" onclick="clearPreview()">clear images</button>
     <button class="btn" type="submit">Create</button>
   </form>
 </main>

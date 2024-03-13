@@ -27,7 +27,6 @@ document.querySelectorAll('input[type="file"]').forEach(function(input) {
           var canvas = document.createElement('canvas');
           var ctx = canvas.getContext('2d');
   
-          // Set the canvas dimensions to the desired size
           var MAX_WIDTH = 200;
           var MAX_HEIGHT = 150;
           var width = img.width;
@@ -48,13 +47,10 @@ document.querySelectorAll('input[type="file"]').forEach(function(input) {
           canvas.width = width;
           canvas.height = height;
   
-          // Draw the image on the canvas
           ctx.drawImage(img, 0, 0, width, height);
   
-          // Get the data URL of the resized image
           var dataUrl = canvas.toDataURL('image/jpeg');
   
-          // Display the resized image
           document.querySelector('#preview' + input.name.replace(/\D/g, '')).innerHTML = '<img src="' + dataUrl + '">';
         };
         img.src = e.target.result;
@@ -63,5 +59,3 @@ document.querySelectorAll('input[type="file"]').forEach(function(input) {
   });
 });
 
-
-  

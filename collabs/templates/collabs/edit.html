@@ -4,7 +4,7 @@ Edit Collab
 {% endblock title %}
 {% load static %}
 {% block content %}
-
+<script src="{% static 'Core/clearPreview.js' %}"></script>
 <script src="{% static 'Core/scriptEdit.js' %}"></script>
 <main id="NewCollabWrapper">
     <form method="post" enctype="multipart/form-data" id="CollabForm">
@@ -13,14 +13,17 @@ Edit Collab
         {{ formset.management_form }}
         {% for form in formset %}
         <section class="CollabBlock">
-                    {{ form }}
-                    {% if form.instance.image %}
-                        <img src="{{ form.instance.image.url }}" id="preview-{{ forloop.counter0 }}">
-                    {% else %}
-                        <img src="" id="preview-{{ forloop.counter0 }}">
-                    {% endif %}
+            {{ form }}
+            {% if form.instance.image %}
+                <span id="preview{{ forloop.counter0 }}"></span>
+                <img src="{{ form.instance.image.url }}" id="preview{{ forloop.counter0 }}">
+            {% else %}
+                <span id="preview{{ forloop.counter0 }}"></span>
+                <img src="" id="preview{{ forloop.counter0 }}">
+            {% endif %}
         </section>
         {% endfor %}
+        <button class="btn" type="button" onclick="clearPreview()">clear images</button>
         <button type="submit" class="btn">Save</button>
     </form>
 </main>
