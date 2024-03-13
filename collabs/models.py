@@ -33,7 +33,7 @@ class Collab(models.Model):
     
 class CollabImage(models.Model):
     collab = models.ForeignKey(Collab, on_delete=models.CASCADE, related_name='images')
-    image = models.ImageField(upload_to='images/')
+    image = models.ImageField(upload_to='images/', blank=True)
     is_main = models.BooleanField(default=False)
     description = models.TextField()
 

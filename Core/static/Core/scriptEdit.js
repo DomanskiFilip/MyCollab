@@ -77,9 +77,12 @@ document.querySelectorAll('input[type="file"]').forEach(function(input) {
   });
 });
 
+// a solution if images are required (in forms.py set to True)
+/*
 document.addEventListener('DOMContentLoaded', (event) => {
   var errorList = document.querySelectorAll(".errorlist");
   errorList.forEach(function(item) {
       item.innerHTML = '<li>Description cannot be added without an image!</li>';
   });
 });
+*/

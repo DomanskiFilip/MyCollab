@@ -18,12 +18,11 @@ def collab(request, pk):
     })
     
     
-
-
 @login_required
 def create_collab(request):
     form = CollabForm(request.POST or None)
     formset = CollabImageFormSet(request.POST or None, request.FILES or None)
+    collab = None
 
     if request.method == 'POST':
         if form.is_valid():
@@ -50,11 +49,12 @@ def create_collab(request):
                         collab_image.is_main = True
                     collab_image.save()
 
-            # Redirect to the collab detail page of the newly created collab
-            return redirect('collabs:collab', pk=collab.id)
-
         else:
             print('There was an error with the formset.')
+
+        if collab is not None:
+            # Redirect to the collab detail page of the newly created collab
+            return redirect('collabs:collab', pk=collab.id)
 
     else:
         formset = CollabImageFormSet(queryset=CollabImage.objects.none())
@@ -116,3 +116,4 @@ def collab_delete(request, pk):
     if request.method == 'POST':
         collab.delete()
         return redirect('Core:index') 
+    

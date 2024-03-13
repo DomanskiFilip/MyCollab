@@ -21,7 +21,7 @@ Signup
     <span> {{ collab.introduction}} </span>
     <section id="imgContainer"> 
       {% for image in images %}
-        {% if image %}
+        {% if image.image.name %}
           <img src="{{ image.image.url }}" alt="{{ collab.title }}">
         {% endif %}
         <span> {{ image.description}} </span>
