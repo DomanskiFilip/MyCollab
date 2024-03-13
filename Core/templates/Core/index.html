@@ -9,18 +9,6 @@ Index
 <main id="collabListWrapper">
 {% for collab, main_image in collabs_withImg %}
     <a href="{% url 'collabs:collab' collab.id %}" id="collabInfoBar">
-        <aside>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-            <div class="circle"></div>
-        </aside>
-        <aside>
             <section id="collabInfoBarHeader">
                 <h2>{{ collab.title }}</h2>
             </section>
@@ -37,7 +25,6 @@ Index
                 </ul>
             </section>
             <p>Created: {{ collab.created_at }}</p>
-        </aside>
     </a>  
         
         

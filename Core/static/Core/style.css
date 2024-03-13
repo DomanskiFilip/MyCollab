@@ -235,7 +235,8 @@ footer {
 
     #collabInfoBar {
         display: flex;
-        flex-direction: row;
+        flex-direction: column;
+        justify-content: space-between;
         width: 29vw;
         height: 40vh;
         text-decoration: none;
@@ -243,107 +244,74 @@ footer {
         padding: 0;
         margin-bottom: 1rem;
         z-index: 10;
-        border: 2.5px solid var(--shadow);
-        background: repeating-linear-gradient(180deg,rgb(0, 119, 255),rgb(0, 119, 255) 0.5px, var(--main) 0.5px, var(--main) 25px);
-    }
-
-        #collabInfoBar:hover {
-            background: repeating-linear-gradient(180deg,rgb(0, 119, 255),rgb(0, 119, 255) 0.5px, var(--action-highlite) 0.5px, var(--action-highlite) 25px);
-            color: var(--secondary-text);
-        }
-
-    #collabInfoBar aside:nth-of-type(1) {
-        width: 7%;
-        max-width: 30px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;
-        background: var(--main);
-    }
-
-        .circle {
-            height: 1.5rem;
-            width: 1.5rem;
-            background-color: var(--main);
-            border-radius: 50%;
-            display: inline-block;
-            border: 1px solid var(--shadow);
-        }
-
-    #collabInfoBar aside:nth-of-type(2) {
-        width: 93%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        border-left: 2px solid var(--text-highlite);
+        border: 2px solid var(--shadow);
     }
 
     #collabInfoBar:hover {
-        transform: translate(0%, 0%) rotate(1.25deg) ;
-        z-index: 9999;
-        outline: 1px solid transparent;
+        background: var(--action-highlite);
+        color: var(--secondary-text);
     }
 
-        #collabInfoBar p {
-            text-align: center;
+    #collabInfoBar p {
+        text-align: center;
+    }
+
+        #collabInfoBarHeader {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            min-height: 20%;
+            max-height: 20%;
+            margin-bottom: 0.5rem;
+            flex: 1;
+            border-bottom: 1px solid var(--shadow);
         }
 
-            #collabInfoBarHeader {
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                align-items: center;
-                min-height: 20%;
-                max-height: 20%;
-                margin-bottom: 0.5rem;
-                flex: 1;
+            #collabInfoBarHeader h2:nth-of-type(1) {
+                text-align: center;
+                font-size: 3rem;
+                font-weight: bold;
             }
 
-                #collabInfoBarHeader h2:nth-of-type(1) {
+        .collabInfoBarWrapper {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            width: 100%;
+        }
+
+            .collabInfoBarWrapper img{
+                width: 100%;
+                height: 7rem;
+                object-fit: scale-down;
+                margin-top: 0.5rem;
+            }
+
+            .collabInfoBarWrapper ul {
+                display: flex;
+                flex-direction: row;
+                list-style-type: none;
+                width: 80%;
+                height: 100%;
+                overflow-x: auto;
+            }
+
+                .collabInfoBarWrapper ul li {
+                    height: 1.6rem;
+                    margin: 0.5rem;
+                    padding: 0.5rem;
+                    border-radius: 10px;
+                    background-color: var(--tag-bg);
                     text-align: center;
-                    font-size: 3rem;
-                    font-weight: bold;
-                }
-
-            .collabInfoBarWrapper {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                width:100%;
-            }
-
-                .collabInfoBarWrapper img{
-                    width: 100%;
-                    height: 7rem;
-                    object-fit: scale-down;
-                    margin-top: 0.5rem;
-                }
-
-                .collabInfoBarWrapper ul {
                     display: flex;
-                    flex-direction: row;
-                    list-style-type: none;
-                    width: 80%;
-                    height: 100%;
-                    overflow-x: auto;
+                    justify-content: center;
+                    align-items: center;
                 }
 
-                    .collabInfoBarWrapper ul li {
-                        height: 1.6rem;
-                        margin: 0.5rem;
-                        padding: 0.5rem;
-                        border-radius: 10px;
-                        background-color: var(--tag-bg);
-                        text-align: center;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                    }
-
-                    .collabInfoBarWrapper ul li:hover {
-                        background-color: var(--tag-bg-hover);
-                    }
+                .collabInfoBarWrapper ul li:hover {
+                    background-color: var(--tag-bg-hover);
+                }
 
 /* css for collab.html */
 
@@ -382,6 +350,9 @@ footer {
         border-bottom: 0.5px solid var(--shadow);
         justify-content: center;
         align-items: center;
+        border-radius: 10px;
+        border-bottom-left-radius: initial;
+        border-bottom-right-radius: initial;
     }
 
         #collabWrapper  nav h2 {
