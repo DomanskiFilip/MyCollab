@@ -9,23 +9,38 @@ Index
 <main id="collabListWrapper">
 {% for collab, main_image in collabs_withImg %}
     <a href="{% url 'collabs:collab' collab.id %}" id="collabInfoBar">
-        <section id="collabInfoBarHeader">
-            <h2>{{ collab.title }}</h2>
-        </section>
-            <span>{{ collab.introduction }}</span>
-        <section class="collabInfoBarWrapper">
-        <img src="{{ main_image.image.url }}" alt="{{ collab.title }}">
-         </section>
-        <section class="collabInfoBarWrapper">
-        <h2>Tags:</h2>
-            <ul>
-                {% for tag in collab.tags.all %}
-                    <li>{{ tag.name }}</li>
-                {% endfor %}
-            </ul>
-        </section>
-        <p>Created: {{ collab.created_at }}</p>
+        <aside>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+            <div class="circle"></div>
+        </aside>
+        <aside>
+            <section id="collabInfoBarHeader">
+                <h2>{{ collab.title }}</h2>
+            </section>
+                <span>{{ collab.introduction }}</span>
+            <section class="collabInfoBarWrapper">
+            <img src="{{ main_image.image.url }}" alt="" onerror="this.style.display='none'">
+             </section>
+            <section class="collabInfoBarWrapper">
+            <h2>Tags:</h2>
+                <ul>
+                    {% for tag in collab.tags.all %}
+                        <li>{{ tag.name }}</li>
+                    {% endfor %}
+                </ul>
+            </section>
+            <p>Created: {{ collab.created_at }}</p>
+        </aside>
     </a>  
+        
+        
 
 {% empty %}
     <p>No collaborations to display.</p>

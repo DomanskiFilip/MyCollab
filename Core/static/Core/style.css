@@ -226,7 +226,7 @@ footer {
     #collabListWrapper span {
         width: 98%;
         min-height: 3.3rem;
-        max-height: 20%;
+        max-height: 50%;
         overflow: auto;
         overflow-x: hidden;
         text-align: justify;
@@ -235,8 +235,7 @@ footer {
 
     #collabInfoBar {
         display: flex;
-        flex-direction: column;
-        justify-content: space-around;
+        flex-direction: row;
         width: 29vw;
         height: 40vh;
         text-decoration: none;
@@ -244,12 +243,47 @@ footer {
         padding: 0;
         margin-bottom: 1rem;
         z-index: 10;
+        border: 2.5px solid var(--shadow);
+        background: repeating-linear-gradient(180deg,rgb(0, 119, 255),rgb(0, 119, 255) 0.5px, var(--main) 0.5px, var(--main) 25px);
     }
 
         #collabInfoBar:hover {
-            background-color: var(--action-highlite);
+            background: repeating-linear-gradient(180deg,rgb(0, 119, 255),rgb(0, 119, 255) 0.5px, var(--action-highlite) 0.5px, var(--action-highlite) 25px);
             color: var(--secondary-text);
         }
+
+    #collabInfoBar aside:nth-of-type(1) {
+        width: 7%;
+        max-width: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        background: var(--main);
+    }
+
+        .circle {
+            height: 1.5rem;
+            width: 1.5rem;
+            background-color: var(--main);
+            border-radius: 50%;
+            display: inline-block;
+            border: 1px solid var(--shadow);
+        }
+
+    #collabInfoBar aside:nth-of-type(2) {
+        width: 93%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        border-left: 2px solid var(--text-highlite);
+    }
+
+    #collabInfoBar:hover {
+        transform: translate(0%, 0%) rotate(1.25deg) ;
+        z-index: 9999;
+        outline: 1px solid transparent;
+    }
 
         #collabInfoBar p {
             text-align: center;
@@ -262,9 +296,8 @@ footer {
                 align-items: center;
                 min-height: 20%;
                 max-height: 20%;
-                padding: 0.5rem;
                 margin-bottom: 0.5rem;
-                border-bottom: 0.5px solid var(--shadow);
+                flex: 1;
             }
 
                 #collabInfoBarHeader h2:nth-of-type(1) {
@@ -277,12 +310,12 @@ footer {
                 display: flex;
                 flex-direction: row;
                 align-items: center;
-                padding: 0.2rem;
+                width:100%;
             }
 
                 .collabInfoBarWrapper img{
                     width: 100%;
-                    max-height: 7rem;
+                    height: 7rem;
                     object-fit: scale-down;
                     margin-top: 0.5rem;
                 }
