@@ -29,7 +29,7 @@ Signup
       {% if request.user == collab.user %}
     </section>
     <section>
-      <a href="{% url 'collabs:edit' collab.id %}" class="btn">edit</a>
+      <a href="{% url 'collabs:edit' collab.id %}" class="btn" id="editBtn">edit</a>
       <a href="#deleteCollabModal" class="btn btn-danger" onclick="confirmDelete('{{ collab.id }}')" id="deleteBtn">Delete</a>
     </section>
       <!-- Confirmation dialog -->
