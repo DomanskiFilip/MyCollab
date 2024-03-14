@@ -39,14 +39,14 @@ def home(request):
         
     return render(
         request,
-        'Core/index.html',
+        'Core/home.html',
         {'collabs_withImg': active_collabs_with_image}
     )
 
 
 def logout_view(request):
     logout(request)
-    return redirect('Core:index')
+    return redirect('Core:home')
 
 @login_required
 def account(request):

@@ -115,5 +115,5 @@ def collab_delete(request, pk):
     collab = get_object_or_404(Collab, pk=pk)
     if request.method == 'POST':
         collab.delete()
-        return redirect('Core:index') 
+        return redirect('Core:home') 
     
