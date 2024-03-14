@@ -4,8 +4,9 @@
     --text: #000000;
     --secondary-text: #F3EDC8;
     --text-highlite: #ff1500;
+    --button-text: #fda898;
     --action-highlite: #BF3131;
-    --tag-bg: #fc4a39;
+    --tag-bg: #ff4a3a;
     --tag-bg-hover: #d94133;
     --shadow: #2f2f2f;
 }
@@ -317,7 +318,7 @@ footer {
 
 .btn {
     background-color: var(--action-highlite);
-    color: var(--tag-bg);
+    color: var(--button-text);
     padding: 1rem;
     margin-bottom: 1rem;
     border: 1px solid var(--text-highlite);
@@ -591,6 +592,7 @@ footer {
     }
 
     #CollabForm .btn{
+            font-size: 1.2rem;
             padding: 0.5rem;
             margin: 0.5rem;
         }
