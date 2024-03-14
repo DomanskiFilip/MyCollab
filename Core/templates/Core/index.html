@@ -14,7 +14,9 @@ Index
             </section>
                 <span>{{ collab.introduction }}</span>
             <section class="collabInfoBarWrapper">
-            <img src="{{ main_image.image.url }}" alt="" onerror="this.style.display='none'">
+                {% if main_image.image.name %}
+                <img src="{{ main_image.image.url }}" alt="" onerror="this.style.display='none'">
+                 {% endif %}
              </section>
             <section class="collabInfoBarWrapper">
             <h2>Tags:</h2>
