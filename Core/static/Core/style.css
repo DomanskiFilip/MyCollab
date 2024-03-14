@@ -102,23 +102,22 @@ nav {
 }
 
     nav ul {
+        position: relative;
         display: flex;
         flex-direction: row;
-        justify-content: flex-end;
+        justify-content: center;
+        align-items: center;
         list-style-type: none;
         width: 100%;  
         color: var(--secondary-text);
         text-align: center;
     }
 
-    nav ul:nth-of-type(2) {
-        justify-content: center;
-    }
-
         nav ul li {
             display: flex;
             flex-direction: column;
             justify-content: center;
+            align-items: center;
             height: 1rem;
             padding: 1rem;
         }
@@ -129,12 +128,6 @@ nav {
                 font-size: 1.5rem;
                 color: var(--secondary-text);
             }
-
-            nav ul li:nth-of-type(1)  {
-                display: flex;
-                flex-direction: row;
-                align-items: flex-end;
-            }   
 
                 nav ul li:nth-of-type(1) a {
                     font-size: 1rem;
@@ -149,27 +142,33 @@ nav {
                     text-decoration: none;
                 }
             
-                nav ul:nth-of-type(3) li a:nth-of-type(1) {
+                nav ul li a:nth-of-type(2) {
                     padding-right: 1rem;
                 }
 
-                nav ul:nth-of-type(2) li:nth-of-type(1) {
-                    align-items: center;
-                }
-
-                nav ul:nth-of-type(2) li:nth-of-type(2) a img {
+                nav ul li a img {
                     width: 50px;
                     height: 50px;
                     padding-bottom: 0.5rem;
                 }
 
-
-    nav ul:nth-of-type(3) li a:nth-of-type(1) {
-        padding-right: 1rem;
+    nav ul li:nth-of-type(4) {
+        position: absolute;
+        right: 0;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
     }
 
-    nav ul:nth-of-type(3) li a:nth-of-type(2) {
+
+    nav ul li:nth-of-type(4) a:nth-of-type(1) {
+        padding-right: 1rem;
+        font-size: 1rem;
+    }
+
+    nav ul li:nth-of-type(4) a:nth-of-type(2) {
         padding-left: 1rem;
+        font-size: 1rem;
     }
 
 #activeCollabs{
@@ -244,7 +243,7 @@ footer {
         padding: 0;
         margin-bottom: 1rem;
         z-index: 10;
-        border: 2px solid var(--shadow);
+        border: 1px solid var(--shadow);
     }
 
     #collabInfoBar:hover {
@@ -343,6 +342,7 @@ footer {
 }
 
     #collabWrapper nav {
+        position: relative;
         display: flex;
         flex-direction: row;
         padding-top: 0.5rem;
@@ -353,7 +353,13 @@ footer {
         border-radius: 10px;
         border-bottom-left-radius: initial;
         border-bottom-right-radius: initial;
+        text-align: center;
     }
+
+        #collabWrapper  nav a {
+            position: absolute;
+            left: 25px;
+        }
 
         #collabWrapper  nav h2 {
             width: 90%;

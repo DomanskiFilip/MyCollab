@@ -4,7 +4,6 @@
         <meta charset="utf-8" />
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'Core/style.css' %}" />
-       
         <title>MDX Collab Hub</title>
     </head>
     <body>
@@ -14,13 +13,10 @@
     </header>
 
     <nav>
-        <ul></ul>
         <ul>
             <li><a href="{% url 'collabs:new_collab' %}">Create Collab</a></li>
             <li><a href="{% url 'Core:index' %}"><img src="{% static 'img/home.png' %}"  alt="home icon from flaticon.com"></a></li>
             <li><a href="{% url 'Core:account' %}">My Collabs</a></li>
-        </ul>
-        <ul>
             <li>{% if request.user.is_authenticated %}<a href="{% url 'Core:logout' %}">Logout</a>{% else %} <a href="">Sign Up</a> | <a href="{% url 'Core:login' %}">Login</a>{% endif %}</li>
         </ul>
     </nav>
