@@ -215,30 +215,20 @@ footer {
 
 #collabListWrapper {
     display: grid;
-    grid-template-columns: auto auto auto;
-    width: 90%;
+    grid-template-columns: auto auto auto auto;
+    width: 95%;
     height: 65vh;
     overflow-y: auto;
     overflow-x: hidden;
     text-overflow: ellipsis;
 }
 
-    #collabListWrapper span {
-        width: 98%;
-        min-height: 3.3rem;
-        max-height: 50%;
-        overflow: auto;
-        overflow-x: hidden;
-        text-align: justify;
-        padding-left: 0.2rem;
-    }
-
     #collabInfoBar {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        width: 29vw;
-        height: 40vh;
+        width: 23vw;
+        height: 30vh;
         text-decoration: none;
         color: var(--text); 
         margin-bottom: 1rem;
@@ -246,84 +236,102 @@ footer {
         border: 1px solid var(--shadow);
     }
 
-    #collabInfoBar:hover {
-        background: var(--action-highlite);
-        color: var(--secondary-text);
-    }
-
-    #collabInfoBar p {
-        text-align: center;
-      /*  text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap; */
-        height: 1rem;
-        padding: 0.5rem;
-    }
-
-        #collabInfoBarHeader {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            min-height: 20%;
-            max-height: 20%;
-            margin-bottom: 0.5rem;
-            padding-top: 0.5rem;
-            flex: 1;
-            border-bottom: 1px solid var(--shadow);
+        #collabInfoBar:hover {
+            background: var(--action-highlite);
+            color: var(--secondary-text);
         }
 
-        #collabInfoBarHeader h2:nth-of-type(1) {
+        #collabInfoBar p {
             text-align: center;
-            font-size: 3rem;
-            font-weight: bold;
-            text-overflow: ellipsis;
-            overflow: hidden;
-            white-space: nowrap;
-            width: 100%;
-            height: 100%;
-            padding: 1rem;
+            font-size: 0.75rem;
+            flex: end;
         }
 
-        .collabInfoBarWrapper {
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            width: 100%;
-        }
-
-            .collabInfoBarWrapper img{
-                width: 100%;
-                min-height: 5rem;
-                max-height: 7rem;
-                object-fit: scale-down;
-                margin-top: 0.5rem;
-            }
-
-            .collabInfoBarWrapper ul {
+            #collabInfoBarHeader {
                 display: flex;
                 flex-direction: row;
-                list-style-type: none;
-                width: 80%;
-                height: 100%;
-                overflow-x: auto;
+                justify-content: center;
+                align-items: center;
+                height: 12%;
+                margin-bottom: 0.2rem;
+                padding-top: 0.2rem;
+                padding-bottom: 0.6rem;
+                border-bottom: 1px solid var(--shadow);
             }
 
-                .collabInfoBarWrapper ul li {
-                    height: 1.6rem;
-                    margin: 0.5rem;
-                    padding: 0.5rem;
-                    border-radius: 10px;
-                    background-color: var(--tag-bg);
-                    text-align: center;
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
+            #collabInfoBarHeader h2 {
+                text-align: center;
+                font-size: 2rem;
+                font-weight: bold;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+                width: 100%;
+                height: 100%;
+                padding: 0.5rem;
+            }
+
+            .collabInfoBarWrapper {
+                position: relative;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                height: 50%;
+            }
+                    #tagsBox {
+                        padding-left: 0.5rem;
+                        justify-content: initial;
+                        height: 15%;
+                    }
+
+                .collabInfoBarWrapper h2 {
+                    font-size: 1rem;
                 }
 
-                .collabInfoBarWrapper ul li:hover {
-                    background-color: var(--tag-bg-hover);
+                #collabInfoBar span {
+                    position: absolute;
+                    width: 98%;
+                    height: 100%;
+                    font-size: 1rem;
+                    overflow: auto;
+                    overflow-x: hidden;
+                    text-align: justify;
+                    padding-left: 0.2rem;
                 }
+
+                .collabInfoBarWrapper img{
+                    width: 99%;
+                    height: 100%;
+                    object-fit: scale-down;
+                }
+
+                .collabInfoBarWrapper ul {
+                    display: flex;
+                    flex-direction: row;
+                    list-style-type: none;
+                    width: 80%;
+                    height: 100%;
+                    overflow-x: auto;
+                }
+
+                    .collabInfoBarWrapper ul li {
+                        height: 0.75rem;
+                        font-size: 0.75rem;
+                        margin: 0.2rem;
+                        padding: 0.5rem;
+                        border-radius: 10px;
+                        background-color: var(--tag-bg);
+                        text-align: center;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                    }
+
+                    .collabInfoBarWrapper ul li:hover {
+                        background-color: var(--tag-bg-hover);
+                    }
 
 /* css for collab.html */
 

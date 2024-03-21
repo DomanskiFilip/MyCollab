@@ -12,13 +12,14 @@ Index
             <section id="collabInfoBarHeader">
                 <h2>{{ collab.title }}</h2>
             </section>
-                <span>{{ collab.introduction }}</span>
             <section class="collabInfoBarWrapper">
                 {% if main_image.image.name %}
                 <img src="{{ main_image.image.url }}" alt="" onerror="this.style.display='none'">
-                 {% endif %}
+                {% else %}
+                <span> {{ collab.introduction }} </span>
+                {% endif %}
              </section>
-            <section class="collabInfoBarWrapper">
+            <section class="collabInfoBarWrapper" id="tagsBox">
             <h2>Tags:</h2>
                 <ul>
                     {% for tag in collab.tags.all %}
