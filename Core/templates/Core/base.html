@@ -8,18 +8,19 @@
     </head>
     <body>
 
-    <header>
-        <button onclick="location.reload()"><img src="{% static 'img/mdx_logo.png' %}"  alt="mdx logo"><h1>Collab</h1></button>
-    </header>
-
     <nav>
         <ul>
             <li><a href="{% url 'collabs:new_collab' %}">Create Collab</a></li>
-            <li><a href="{% url 'Core:home' %}"><img src="{% static 'img/home.png' %}"  alt="home icon from flaticon.com"></a></li>
             <li><a href="{% url 'Core:account' %}">My Collabs</a></li>
             <li>{% if request.user.is_authenticated %}<a href="{% url 'Core:logout' %}">Logout</a>{% else %} <a href="">Sign Up</a> | <a href="{% url 'Core:login' %}">Login</a>{% endif %}</li>
         </ul>
     </nav>
+    
+    <header>
+        <button onclick="location.reload()"><img src="{% static 'img/mdx_logo.png' %}"  alt="mdx logo"><h1>Collab</h1></button>
+    </header>
+
+    
     
     <span id="activeCollabs">There are {{ active_collabs_count }} active collabs!</span>
 
