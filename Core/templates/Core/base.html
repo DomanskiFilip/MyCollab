@@ -4,6 +4,7 @@
         <meta charset="utf-8" />
         {% load static %}
         <link rel="stylesheet" type="text/css" href="{% static 'Core/style.css' %}" />
+        <script src="{% static 'Core/script.js' %}" defer></script>
         <title>MDX Collab Hub</title>
     </head>
     <body>
@@ -17,7 +18,7 @@
     </nav>
     
     <header>
-        <button onclick="location.reload()"><img src="{% static 'img/mdx_logo.png' %}"  alt="mdx logo"><h1>Collab</h1></button>
+        <a href="{% url 'Core:home' %}" ><img src="{% static 'img/mdx_logo.png' %}"  alt="mdx logo"><h1>Collab</h1></a>
     </header>
 
     
@@ -34,4 +35,3 @@
     </body>
 </html>
 
-<script src="{% static 'Core/script.js' %}"></script>

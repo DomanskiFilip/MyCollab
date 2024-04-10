@@ -61,26 +61,27 @@ header {
     padding-bottom: 1rem;
 }
 
-    header button {
+    header a {
         background-color: var(--secondary);
         border: none;
         outline: none;
         display: flex;
         flex-direction: row;
+        text-decoration: none;
     }
 
-        header button:hover {
+        header a:hover {
             cursor: pointer;
         }
 
-        header button h1 {
+        header a h1 {
             font-size: 2.5rem;
             padding: 1rem;
             color: var(--text-highlite);
             text-shadow: 5px 5px var(--shadow);
         }
 
-            header button h1:hover {
+            header a h1:hover {
                 color: var(--secondary-text);
             }
     header img {
