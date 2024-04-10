@@ -23,3 +23,31 @@ function confirmDelete(collabId) {
         }
     };
 }
+
+
+function confirmDeleteMyCollabs(event, collabId) {
+    event.preventDefault(); // prevent the default action
+
+    let deleteBtnMyCollabs = document.querySelectorAll(".deleteBtnMyCollabs");
+    let confirmDeleteButtons = document.querySelectorAll(".confirmDeleteButton");
+
+    confirmDeleteButtons.forEach(button => {
+        if (button.dataset.collabId == collabId) {
+            if (button.style.display == "none") {
+                button.style.display = "inline";
+                deleteBtnMyCollabs.forEach(btn => {
+                    if (btn.dataset.collabId == collabId) {
+                        btn.innerHTML = "Cancel";
+                    }
+                });
+            } else {
+                button.style.display = "none";
+                deleteBtnMyCollabs.forEach(btn => {
+                    if (btn.dataset.collabId == collabId) {
+                        btn.innerHTML = "Delete";
+                    }
+                });
+            }
+        }
+    });
+}

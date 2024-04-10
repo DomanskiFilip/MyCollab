@@ -53,7 +53,6 @@ def account(request):
 
     user = request.user
     collabs = Collab.objects.filter(user=user)
-    collabs = Collab.objects.all()
     context = {
         'user': user,
         'collabs' : collabs
