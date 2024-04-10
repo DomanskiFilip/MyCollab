@@ -1,12 +1,12 @@
 :root {
     --main: #ffffff;
-    --secondary: #7D0A0A;
+    --secondary: #F9837B;
     --text: #000000;
     --secondary-text: #F3EDC8;
-    --text-highlite: #ff1500;
+    --text-highlite: #9B0015;
     --button-text: #fda898;
-    --action-highlite: #BF3131;
-    --tag-bg: #ff4a3a;
+    --action-highlite: #e8594c;
+    --tag-bg: #e8594c;
     --tag-bg-hover: #d94133;
     --shadow: #2f2f2f;
 }
@@ -85,15 +85,10 @@ header {
                 color: var(--secondary-text);
             }
     header img {
-        height: 5rem;
-        width: 5rem;
+        height: 7rem;
+        width: 7rem;
         border-radius: 10px;
         margin-left: 0.5rem;
-    }
-
-        header img:hover {
-            background-color: var(--text-highlite);
-        
     }
 
 nav {
@@ -133,30 +128,23 @@ nav {
                 font-size: 1.5rem;
                 color: var(--secondary-text);
                 font-size: 1rem;
+                padding: 0.5rem;
+                margin-top: 0.3rem;
             }
 
                 nav ul li a:hover {
-                    color: var(--text-highlite);
+                    background-color: var(--tag-bg);
+                    box-shadow: 2px 2px 2px var(--shadow); 
                     text-decoration: none;
+                    border-radius: 10px;
                 }
 
-    nav ul li:nth-of-type(3) {
+    nav ul li:nth-of-type(4) {
         position: absolute;
         right: 0;
         display: flex;
         flex-direction: row;
         align-items: center;
-    }
-
-
-    nav ul li:nth-of-type(3) a:nth-of-type(1) {
-        padding-right: 1rem;
-        font-size: 1rem;
-    }
-
-    nav ul li:nth-of-type(3) a:nth-of-type(2) {
-        padding-left: 1rem;
-        font-size: 1rem;
     }
 
 #activeCollabs{
@@ -198,7 +186,7 @@ footer {
     margin-right: 0.5rem;
 }
 
-/* css for index.html */
+/* css for home.html */
 
 #homeWrapper {
     display: flex;
@@ -252,7 +240,7 @@ footer {
     }
 
         #collabInfoBar:hover {
-            background: var(--action-highlite);
+            background: var(--secondary);
             color: var(--secondary-text);
         }
 

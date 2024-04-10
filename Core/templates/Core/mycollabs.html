@@ -14,11 +14,11 @@
                 <span>{{ collab.title }}</span>
                 <span>Created: {{ collab.created_at }}</span>
                 <a class="btn" href="{% url 'collabs:edit' collab.id %}">edit</a>
-                <a href="" class="btn btn-danger deleteBtnMyCollabs" onclick="confirmDeleteMyCollabs(event, '{{ collab.id }}')" data-collab-id="{{ collab.id }}">Delete</a>
                 <form action="{% url 'collabs:deleteR' collab.id %}" method="POST" style="display: inline;">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger confirmDeleteButton" data-collab-id="{{ collab.id }}" style="display: none;">Confirm to Delete</button>
                 </form>
+                <a href="" class="btn btn-danger deleteBtnMyCollabs" onclick="confirmDeleteMyCollabs(event, '{{ collab.id }}')" data-collab-id="{{ collab.id }}">Delete</a>
         </section>
         {% endfor %}
         </main>
