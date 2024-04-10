@@ -10,6 +10,7 @@ app_name = 'Core'
 
 urlpatterns = [
     path("", views.home, name="home"),
+    path("mycollabs/", views.account, name="mycollabs"),
     # path('signup/', views.signup, name='signup'),
     path('login/', auth_views.LoginView.as_view(template_name='core/login.html', authentication_form=LoginForm), name='login'),
     path('account/', views.account, name='account'),

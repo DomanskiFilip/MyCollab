@@ -60,4 +60,3 @@ def account(request):
     }
 
     return render(request, 'core/mycollabs.html', context)
-

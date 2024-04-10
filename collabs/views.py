@@ -117,3 +117,10 @@ def collab_delete(request, pk):
         collab.delete()
         return redirect('Core:home') 
     
+@require_POST
+@login_required
+def collab_delete_reload(request, pk):
+    collab = get_object_or_404(Collab, pk=pk)
+    if request.method == 'POST':
+        collab.delete()
+        return redirect('Core:mycollabs') 
