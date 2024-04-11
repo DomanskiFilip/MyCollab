@@ -13,14 +13,16 @@ Edit Collab
         {{ formset.management_form }}
         {% for form in formset %}
         <section class="CollabBlock">
-            {{ form }}
-            {% if form.instance.image %}
-                <span id="preview{{ forloop.counter0 }}"></span>
-                <img src="{{ form.instance.image.url }}" id="preview{{ forloop.counter0 }}">
-            {% else %}
-                <span id="preview{{ forloop.counter0 }}"></span>
-                <img src="" id="preview{{ forloop.counter0 }}">
-            {% endif %}
+                <section class="wrapper-row">
+                    {{ form }}
+                        {% if form.instance.image %}
+                        <span id="preview{{ forloop.counter0 }}"></span>
+                        <img src="{{ form.instance.image.url }}" id="preview{{ forloop.counter0 }}">
+                        {% else %}
+                        <span id="preview{{ forloop.counter0 }}"></span>
+                        <img src="" id="preview{{ forloop.counter0 }}">
+                        {% endif %}
+                </section>
         </section>
         {% endfor %}
         <button class="btn" type="button" onclick="clearPreview()">clear images</button>
