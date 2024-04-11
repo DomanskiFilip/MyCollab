@@ -17,16 +17,26 @@ New Collab
     {{ formset.management_form }}
 
       {% for form in formset %}
-      <span class="special_label"> Description: </span>
-      {{ form.description }}
-      {{ form.image.label_tag }} {{ form.image }}
-      
-    <span id="preview{{ forloop.counter0 }}"></span> 
-    <section id="wrapper">
+    <section id="CollabFormDescription">
+      <section class="wrapper-column">
+        <span> Description: </span>
+         {{ form.description }}
+      </section>
+      <section class="wrapper-column">
+        <section class="wrapper-row" id="img_box">
+          {{ form.image.label_tag }} {{ form.image }}
+          <span id="preview{{ forloop.counter0 }}"></span> 
+        </section>
+        <section class="wrapper-row">
           {{ form.is_main.label_tag }} {{ form.is_main }}
+        </section>
+      </section>
     </section>
-    
+
   {% endfor %}
+    <span id="introduction_error_msg" class="error_msg"> </span>
+    <span id="title_error_msg" class="error_msg"> </span>
+    <span id="tags_error_msg" class="error_msg"> </span>
     <button class="btn" type="button" onclick="clearPreview()">clear images</button>
     <button class="btn" type="submit">Create</button>
   </form>

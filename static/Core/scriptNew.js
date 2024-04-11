@@ -1,3 +1,52 @@
+window.onload = function() {
+  document.getElementById("CollabForm").addEventListener("submit", function(e){
+      let checkboxes = document.querySelectorAll('.checkbox_tags');
+      let checkedOne = Array.prototype.slice.call(checkboxes).some(x => x.checked);
+      let tags_error_msg = document.getElementById("tags_error_msg");
+
+      let title = document.getElementById("id_title");
+      let title_error_msg = document.getElementById("title_error_msg");
+
+      let introduction = document.getElementById("id_introduction");
+      let introduction_error_msg = document.getElementById("introduction_error_msg");
+
+      if (title.value.trim() === "") {
+          e.preventDefault();
+          title_error_msg.innerHTML = "Title is required!";
+          tags_error_msg.innerHTML = "";
+          introduction_error_msg.innerHTML = "";
+          return;
+      } else {
+        title_error_msg.innerHTML = "";
+        tags_error_msg.innerHTML = "";
+        introduction_error_msg.innerHTML = "";
+      }
+
+      if (!checkedOne) {
+          e.preventDefault();
+          tags_error_msg.innerHTML = "Please select at least one tag!";
+          title_error_msg.innerHTML = "";
+          introduction_error_msg.innerHTML = "";
+          return;
+      } else {
+        title_error_msg.innerHTML = "";
+        tags_error_msg.innerHTML = "";
+        introduction_error_msg.innerHTML = "";
+      }
+
+      if (introduction.value.trim() === "") {
+          e.preventDefault();
+          introduction_error_msg.innerHTML = "Introduction is required!";
+          title_error_msg.innerHTML = "";
+          tags_error_msg.innerHTML = "";
+          return;
+      } else {
+        title_error_msg.innerHTML = "";
+        tags_error_msg.innerHTML = "";
+        introduction_error_msg.innerHTML = "";
+      }
+  });
+};
 
 // Get all checkboxes
 var checkboxes = document.querySelectorAll('.checkbox_is_main');

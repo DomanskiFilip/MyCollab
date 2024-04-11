@@ -11,6 +11,11 @@ class CollabForm(forms.ModelForm):
             'introduction': forms.Textarea(attrs={'class': 'textarea_description'}),
         }
 
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['title'].required = False
+        self.fields['introduction'].required = False
+
 # https://www.letscodemore.com/blog/django-inline-formset-factory-with-examples/
 
 class CollabImageForm(forms.ModelForm):

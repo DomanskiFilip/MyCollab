@@ -49,6 +49,23 @@ body {
     background-color: var(--tag-bg-hover);
 }
 
+
+.wrapper-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.wrapper-column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
 /* css for Base.html */
 
 header {
@@ -593,9 +610,14 @@ footer {
         margin: 0.5rem;
     }
 
+    #CollabForm #img_box {
+        width: 100%;
+        height: 7rem;
+    }
 
     #CollabForm .input_image {
-        width: 20%;
+        width: 40%;
+        margin-left: 1rem;
     }
 
     #CollabForm textarea {
@@ -611,7 +633,6 @@ footer {
 
     #CollabForm .special_label {
         margin-top: 4rem;
-
     }
 
     #CollabForm .btn{
@@ -619,6 +640,15 @@ footer {
             padding: 0.5rem;
             margin: 0.5rem;
         }
+
+#CollabFormDescription {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+    width: 100%;
+}
 
 .checkbox_tags {
     width: 100%;
@@ -678,6 +708,11 @@ footer {
     color: var(--text-highlite)
 }
 
+.error_msg {
+    font-size: 2rem;
+    color: var(--text-highlite)
+}
+
 /* mycollabs (collab edit list) style */
 #myCollabsHi {
     margin-bottom: 1rem;
@@ -696,7 +731,7 @@ footer {
 #myCollabsWrapper {
     display: flex;
     flex-direction: row;
-    justify-content: flex-end;
+    justify-content: center;
     align-items: center;
     width: 70vw;
 }
