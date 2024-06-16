@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+
 class CollabTag(models.Model):
     name = models.CharField(max_length=200)
     
@@ -43,3 +44,4 @@ class CollabImage(models.Model):
     def delete(self, *args, **kwargs):
         self.image.delete()
         super().delete(*args, **kwargs)
+

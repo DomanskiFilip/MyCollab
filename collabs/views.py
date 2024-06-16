@@ -91,7 +91,7 @@ def collab_edit(request, collab_id):
         else:
             formset = CollabImageFormSet(queryset=CollabImage.objects.none())
 
-    additional_images_count = 5 - collab.images.count()
+    additional_images_count = 3 - collab.images.count()
 
     return render(request, 'collabs/edit.html', {
         'form': form,

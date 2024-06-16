@@ -11,18 +11,25 @@ Edit Collab
         {% csrf_token %}
         {{ form }}
         {{ formset.management_form }}
+
         {% for form in formset %}
         <section class="CollabBlock">
-                <section class="wrapper-row">
-                    {{ form }}
+            <section class="wrapper-column">
+                <span> Description: </span>
+                 {{ form.description }}
+              </section>
+              <section class="wrapper-column">
                         {% if form.instance.image %}
-                        <span id="preview{{ forloop.counter0 }}"></span>
+                        <section class="wrapper-row">
+                        {{form.image}}
+                        </section>
+                        {{ form.image.label_tag }}
                         <img src="{{ form.instance.image.url }}" id="preview{{ forloop.counter0 }}">
                         {% else %}
-                        <span id="preview{{ forloop.counter0 }}"></span>
-                        <img src="" id="preview{{ forloop.counter0 }}">
+                        {{ form.image }}
                         {% endif %}
                 </section>
+            </section>
         </section>
         {% endfor %}
         <button class="btn" type="button" onclick="clearPreview()">clear images</button>
