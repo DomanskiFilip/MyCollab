@@ -1,5 +1,5 @@
 :root {
-    --main: #ffffff;
+    --main: #feb38a;
     --secondary: #F9837B;
     --text: #000000;
     --secondary-text: #F3EDC8;
@@ -607,8 +607,32 @@ footer {
     #CollabForm input[type="checkbox"] {
         width: 1rem;
         height: 1rem;
+        padding: 0;
         margin: 0.5rem;
+        background-color: var(--secondary);
+        -moz-appearance: none;
+        -o-appearance: none;
+        appearance: none;
+        -webkit-appearance: none;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10%;
     }
+
+        #CollabForm input[type="checkbox"]::before {
+                content: "";
+                width: 0.7rem;
+                height: 0.7rem;
+                clip-path: polygon(20% 0%, 0% 20%, 30% 50%, 0% 80%, 20% 100%, 50% 70%, 80% 100%, 100% 80%, 70% 50%, 100% 20%, 80% 0%, 50% 30%);
+                opacity: 0;
+            }
+      
+        #CollabForm input[type="checkbox"]:checked::before {
+            opacity: 1;
+            background-color: var(--secondary-text);
+          }
+        
 
     #CollabForm #img_box {
         width: 100%;
@@ -649,6 +673,11 @@ footer {
     color: var(--text);
     overflow-y: auto;
 }
+
+    .checkbox_tags label{
+        display: flex;
+        align-items: center;
+    }
 
     .checkbox_tags input[type="checkbox"]{
         overflow-y: hidden;

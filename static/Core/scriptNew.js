@@ -107,4 +107,3 @@ document.querySelectorAll('input[type="file"]').forEach(function(input) {
       reader.readAsDataURL(input.files[0]);
   });
 });
-
