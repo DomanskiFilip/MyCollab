@@ -27,7 +27,6 @@ class CustomClearableFileInput(forms.ClearableFileInput):
 
 
         if value and hasattr(value, "url"):
-            initial_text = "Currently"
             Change_text = "Change: "
             checkbox_label = "Clear: "
             checkbox_name = self.clear_checkbox_name(name)
@@ -37,7 +36,6 @@ class CustomClearableFileInput(forms.ClearableFileInput):
             change_name = f'images-{file_number}-image'
             change_id = f'id_images-{file_number}-image'
 
-            initial_html = format_html('{}: <a href="{}">{}</a>', initial_text, escape(value.url), escape(value))
             clear_checkbox = ''
             if not self.is_required:
                 clear_checkbox = format_html(
@@ -51,9 +49,9 @@ class CustomClearableFileInput(forms.ClearableFileInput):
                 '<input type="file" name="{}" class="input_image" accept="image/*" id="{}">',
                 change_id, Change_text, change_name, change_id
             )
-            custom_html = format_html('{}{}{}', initial_html, clear_checkbox, file_input_html)
+            custom_html = format_html('{}{}', file_input_html, clear_checkbox)
         else:
-            custom_html = format_html('<span>no image to display</span>{}', custom_html)
+            custom_html = format_html('<span></span>{}', custom_html)
 
         return mark_safe(custom_html)
 

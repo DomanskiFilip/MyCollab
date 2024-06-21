@@ -6,6 +6,11 @@ from django.core.exceptions import PermissionDenied
 from django.forms import inlineformset_factory
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
+from .forms import CollabForm, CollabImageFormSet
+from .models import Collab, CollabImage
+from django.contrib import messages
+
+
 
 
 
@@ -29,18 +34,11 @@ def create_collab(request):
             collab = form.save(commit=False)
             collab.user = request.user
             collab.save()
-            form.save_m2m()  # Save the many-to-many data
+            form.save_m2m()  
 
         if formset.is_valid():
             forms_with_image = [form for form in formset if form.cleaned_data.get('image')]
-            mainImgCount = len([form for form in forms_with_image if form.cleaned_data.get('is_main', False)])
-
-            if mainImgCount == 0:
-                print('NO IMAGES MARKED AS MAIN')
-            elif mainImgCount > 1:
-                print('MANY IMAGES MARKED AS MAIN')
-                return render(request, 'collabs/new.html', {'form': form, 'formset': formset, 'error': 'Only one image can be marked as main.'})
-
+            
             for form in formset:
                 if form.cleaned_data.get('image') or form.cleaned_data.get('description'):
                     collab_image = form.save(commit=False)
@@ -62,42 +60,29 @@ def create_collab(request):
     return render(request, 'collabs/new.html', {'form': form, 'formset': formset})
 
 @login_required
-def collab_edit(request, collab_id):
-    collab = get_object_or_404(Collab, id=collab_id)
-
-    if collab.user != request.user:
-        raise PermissionDenied
-
+def collab_edit(request, pk):
+    collab = get_object_or_404(Collab, id=pk)
     if request.method == 'POST':
         form = CollabForm(request.POST, instance=collab)
         formset = CollabImageFormSet(request.POST, request.FILES, instance=collab)
-
         if form.is_valid() and formset.is_valid():
-            forms_with_image = [form for form in formset if form.cleaned_data.get('image')]
             form.save()
             formset.save()
-            if form.cleaned_data.get('image') or form.cleaned_data.get('description'):
-                    collab_image = form.save(commit=False)
-                    collab_image.collab = collab
-                    if not forms_with_image and not collab_image.is_main:
-                        collab_image.is_main = True
-                    collab_image.save()
+            messages.success(request, 'Collab and images updated successfully.')
             return redirect('collabs:collab', pk=collab.id)
-        
+        else:
+            # If form or formset is not valid, add an error message
+            messages.error(request, 'Error updating collab. Please check the form for errors.')
+  
     else:
         form = CollabForm(instance=collab)
-        if collab.images.exists():
-            formset = CollabImageFormSet(instance=collab)
-        else:
-            formset = CollabImageFormSet(queryset=CollabImage.objects.none())
+        formset = CollabImageFormSet(instance=collab)
 
-    additional_images_count = 3 - collab.images.count()
+    if not form.is_valid() or not formset.is_valid():
+            print("Form errors:", form.errors)
+            print("Formset errors:", formset.errors)
 
-    return render(request, 'collabs/edit.html', {
-        'form': form,
-        'formset': formset,
-        'additional_images_count': additional_images_count,
-    })
+    return render(request, 'collabs/edit.html', {'form': form, 'formset': formset})
 
 @login_required 
 def delete_image(request):

@@ -23,16 +23,14 @@ New Collab
          {{ form.description }}
       </section>
       <section class="wrapper-column">
-        <section class="wrapper-row" id="img_box">
-          <div class="label-wrapper">
-            {{ form.image.label_tag }} {{ form.image }}
-          </div>
+        <section class="wrapper-row" id="img_box"> 
+            {{ form.image.label_tag }}
+            {{ form.image }}
           <span id="preview{{ forloop.counter0 }}"></span> 
         </section>
         <section class="wrapper-row">
-          <div class="label-wrapper">
-            {{ form.is_main.label_tag }} {{ form.is_main }}
-          </div>
+            {{ form.is_main.label_tag }}
+            {{ form.is_main }}
         </section>
       </section>
     </section>

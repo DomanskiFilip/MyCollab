@@ -615,16 +615,10 @@ footer {
         height: 7rem;
     }
 
-    .label-wrapper {
-        display: flex;
-        flex-direction: row-reverse;
-        justify-content: flex-end;
-        align-items: center;
-      }
-
     #CollabForm .input_image {
-        width: 60%;
+        width: 35%;
         margin-left: 1rem;
+        margin-right: 1rem;
     }
 
     #CollabForm textarea {

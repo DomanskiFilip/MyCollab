@@ -1,41 +1,4 @@
 
-window.onload = function() {
-    var fileInputs = document.querySelectorAll('input[type="file"]');
-    for (var i = 0; i < fileInputs.length; i++) {
-        fileInputs[i].dataset.index = i;  // Set the dataset.index to match the img id
-        fileInputs[i].addEventListener('change', function(e) {
-            if (e.target.files && e.target.files[0]) {
-                var reader = new FileReader();
-                reader.onload = function(event) {
-                    var img = document.querySelectorAll('#preview' + e.target.dataset.index);
-                    img.src = event.target.result;
-                }
-                reader.readAsDataURL(e.target.files[0]);
-            }
-        });
-    }
-}
-
-
-// Get all checkboxes
-var checkboxes = document.querySelectorAll('.checkbox_is_main');
-
-// Add event listener to each checkbox
-checkboxes.forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
-        // When a checkbox is checked
-        if (this.checked) {
-            // Uncheck all other checkboxes
-            checkboxes.forEach(function(otherCheckbox) {
-                if (otherCheckbox !== checkbox) {
-                    otherCheckbox.checked = false;
-                }
-            });
-        }
-    });
-});
-
-
 document.querySelectorAll('input[type="file"]').forEach(function(input) {
   input.addEventListener('change', function() {
     var reader = new FileReader();
@@ -86,12 +49,39 @@ document.querySelectorAll('input[type="file"]').forEach(function(input) {
   });
 });
 
-// a solution if images are required (in forms.py set to True)
-/*
-document.addEventListener('DOMContentLoaded', (event) => {
-  var errorList = document.querySelectorAll(".errorlist");
-  errorList.forEach(function(item) {
-      item.innerHTML = '<li>Description cannot be added without an image!</li>';
-  });
+window.onload = function() {
+    var fileInputs = document.querySelectorAll('input[type="file"]');
+    for (var i = 0; i < fileInputs.length; i++) {
+        fileInputs[i].dataset.index = i;  // Set the dataset.index to match the img id
+        fileInputs[i].addEventListener('change', function(e) {
+            if (e.target.files && e.target.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    var img = document.querySelectorAll('#preview' + e.target.dataset.index);
+                    img.src = event.target.result;
+                }
+                reader.readAsDataURL(e.target.files[0]);
+            }
+        });
+    }
+}
+
+
+
+// Get all checkboxes
+var checkboxes = document.querySelectorAll('.checkbox_is_main');
+
+// Add event listener to each checkbox
+checkboxes.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+        // When a checkbox is checked
+        if (this.checked) {
+            // Uncheck all other checkboxes
+            checkboxes.forEach(function(otherCheckbox) {
+                if (otherCheckbox !== checkbox) {
+                    otherCheckbox.checked = false;
+                }
+            });
+        }
+    });
 });
-*/
