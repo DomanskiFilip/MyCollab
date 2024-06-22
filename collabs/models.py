@@ -1,6 +1,7 @@
 
 from django.db import models
 from django.contrib.auth.models import User
+from .wordFilter import filter_bad_words
 
 
 
@@ -25,6 +26,10 @@ class Collab(models.Model):
     def get_tags(self):
         return [tag.name for tag in self.tags.all()]
     
+    def save(self, *args, **kwargs):
+        self.title = filter_bad_words(self.title)
+        self.introduction = filter_bad_words(self.introduction)
+        super(Collab, self).save(*args, **kwargs)
     
     def delete(self, *args, **kwargs):
         for image in self.images.all():
@@ -40,6 +45,11 @@ class CollabImage(models.Model):
 
     def __str__(self):
         return f'Image for {self.collab.title}'
+    
+
+    def save(self, *args, **kwargs):
+        self.description = filter_bad_words(self.description)
+        super(CollabImage, self).save(*args, **kwargs)
     
     def delete(self, *args, **kwargs):
         self.image.delete()

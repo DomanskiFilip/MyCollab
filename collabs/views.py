@@ -8,6 +8,7 @@ from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from .forms import CollabForm, CollabImageFormSet
 from .models import Collab, CollabImage
+from .wordFilter import filter_bad_words
 from django.contrib import messages
 
 
@@ -32,6 +33,8 @@ def create_collab(request):
     if request.method == 'POST':
         if form.is_valid():
             collab = form.save(commit=False)
+            collab.title = filter_bad_words(collab.title)
+            collab.introduction = filter_bad_words(collab.introduction)
             collab.user = request.user
             collab.save()
             form.save_m2m()  
