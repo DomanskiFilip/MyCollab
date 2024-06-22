@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 app_name = 'collabs'
 
 urlpatterns = [
+    path('collab_list/', views.collab_list, name='collab_list'),
     path('new/', views.create_collab, name='new_collab'),
     path('<pk>', views.collab, name='collab'),
     path('edit/<int:pk>', views.collab_edit, name='edit'),

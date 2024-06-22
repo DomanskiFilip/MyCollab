@@ -10,10 +10,45 @@ from .forms import CollabForm, CollabImageFormSet
 from .models import Collab, CollabImage
 from .wordFilter import filter_bad_words
 from django.contrib import messages
+from django.db.models import Q
+from django.http import JsonResponse
+from django.core import serializers
+from django.core.serializers import serialize
+from django.conf import settings
+from django.utils.dateformat import DateFormat
+from django.utils.formats import get_format
 
+def collab_list(request):
+    search_query = request.GET.get('search', '')
+    if search_query:
+        collabs_withImg = Collab.objects.filter(
+            Q(title__icontains=search_query) | 
+            Q(title__iregex=r'\b{}\b'.format(search_query))
+        ).distinct()
+    else:
+        collabs_withImg = Collab.objects.all()
 
+    collabs_withImg_list = []
+    for collab in collabs_withImg:
+        readable_date = DateFormat(collab.created_at).format(get_format('DATE_FORMAT'))
 
+        # Filter for the main image
+        main_image = collab.images.filter(is_main=True).first()
+        main_image_url = request.build_absolute_uri(settings.MEDIA_URL + main_image.image.name) if main_image else None
 
+        # Get tags
+        tags = [tag.name for tag in collab.tags.all()]
+
+        collab_dict = {
+            "id": collab.pk,
+            "title": collab.title,
+            "introduction": "" if main_image else collab.introduction,
+            "main_image": {"src": main_image_url} if main_image_url else "",
+            "tags": tags,
+            "created_at": readable_date,
+        }
+        collabs_withImg_list.append(collab_dict)
+    return JsonResponse({'collabs_withImg': collabs_withImg_list})
 
 def collab(request, pk):
     collab = Collab.objects.get(pk=pk)

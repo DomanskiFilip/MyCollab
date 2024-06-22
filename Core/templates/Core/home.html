@@ -3,14 +3,16 @@
 {% block title %}
 Index
 {% endblock title %}
-
+{% load static %}
 {% block content %}
+<script src="{% static 'Core/searchfunctionality.js' %}" defer></script>
+
 <main id="homeWrapper">
-    <aside id="searchNav">
-        <header>
-            <h2>Search</h2>
-        </header>
-    </aside>
+    <header id="searchNav">
+        <form action="{% url 'collabs:collab_list' %}" method="get">
+            <input type="text" name="search" placeholder="search for a collab" maxlength="100" id="searchBar" value="{{ request.GET.search }}">
+        </form>
+    </header>
 
     <article id="collabListWrapper">
     {% for collab, main_image in collabs_withImg %}

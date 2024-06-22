@@ -14,7 +14,7 @@ class CollabTag(models.Model):
 
 class Collab(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=100)
     introduction = models.TextField()
     active = models.BooleanField(default=True)
     tags = models.ManyToManyField(CollabTag)

@@ -212,25 +212,28 @@ footer {
     height: 80vh;
 }
 
-#searchNav {
+#searchNav{
     width: 100%;
-    height: auto;
-    opacity: 0;
+    height: 5rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0;
+    display: flex;
+    justify-content: center;
 }
-    #searchNav header {
-        justify-content: flex-start;
-        height: 2rem;
-        margin-bottom: 1rem;
-        padding-bottom: 0;
-    }
 
-        #searchNav header h2 {
-            width:100%;
-            padding-left: 0.5rem;
-            text-align: start;
-            font-size: 1.5rem;
-            border-bottom: 1px solid var(--secondary-text);
-            color: var(--secondary-text);
+    #searchNav form{
+        width: 50%;
+    }
+        
+        #searchBar {
+            width: 100%;
+            padding: 0.5rem;
+            margin-top: 0.5rem;
+            margin-bottom: 0.5rem;
+            border: 1px solid var(--text-highlite);
+            border-radius: 10px;
+            background-color: var(--main);
+            color: var(--text)
         }
 
 #collabListWrapper {
@@ -703,6 +706,7 @@ footer {
 
         .checkbox_tags .checked{
             background-color: var(--tag-bg);
+            border: 1px solid var(--text-highlite);
         }
 
     .checkbox_tags input[type="checkbox"] {
