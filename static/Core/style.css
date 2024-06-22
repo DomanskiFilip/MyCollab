@@ -207,14 +207,15 @@ footer {
 
 #homeWrapper {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 100%;
-    height: 65vh;
+    height: 80vh;
 }
 
 #searchNav {
-    width: 20%;
+    width: 100%;
     height: auto;
+    opacity: 0;
 }
     #searchNav header {
         justify-content: flex-start;
@@ -234,21 +235,24 @@ footer {
 
 #collabListWrapper {
     display: grid;
-    grid-template-columns: auto auto auto;
-    width: 80%;
-    height: 100%;
-    padding-left: 3rem;
+    grid-template-columns: auto auto auto auto;
+    width: 99%;
+    height: 90%;
+    padding-left: 1rem;
+    padding-right: 1rem;
     overflow-y: auto;
     overflow-x: hidden;
     text-overflow: ellipsis;
+    padding-top: 2rem;
+    box-shadow: inset 0 5px 5px -5px var(--shadow);
 }
 
     #collabInfoBar {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        width: 25vw;
-        height: 35vh;
+        width: 24vw;
+        height: 34vh;
         text-decoration: none;
         color: var(--text); 
         margin-bottom: 1rem;
@@ -357,7 +361,7 @@ footer {
 
 
 .btn {
-    background-color: var(--action-highlite);
+    background-color: var(--tag-bg);
     color: var(--button-text);
     padding: 1rem;
     margin-bottom: 1rem;
@@ -618,6 +622,7 @@ footer {
         justify-content: center;
         align-items: center;
         border-radius: 10%;
+        cursor: pointer;
     }
 
         #CollabForm input[type="checkbox"]::before {
@@ -632,6 +637,18 @@ footer {
             opacity: 1;
             background-color: var(--secondary-text);
           }
+        
+    #CollabForm input[type="file"]::file-selector-button {
+    background-color: var(--secondary);
+    border: 0;
+    border-radius: 10px;
+    padding: 0.5rem;
+    }
+
+        #CollabForm input[type="file"]::file-selector-button:hover {
+            background-color: var(--tag-bg-hover);
+            cursor: pointer;
+            }
         
 
     #CollabForm #img_box {
@@ -668,7 +685,7 @@ footer {
 
 .checkbox_tags {
     width: 100%;
-    height: 7rem;
+    height: 10rem;
     background-color: var(--main);
     color: var(--text);
     overflow-y: auto;
@@ -679,12 +696,21 @@ footer {
         align-items: center;
     }
 
-    .checkbox_tags input[type="checkbox"]{
+        .checkbox_tags label:hover {
+            cursor: pointer;
+            background-color: var(--tag-bg);
+        }
+
+        .checkbox_tags .checked{
+            background-color: var(--tag-bg);
+        }
+
+    .checkbox_tags input[type="checkbox"] {
         overflow-y: hidden;
         width: 100%;
         height: 100%;
+        opacity: 0;
     }
-
 
     .CollabBlock {
         display: flex;
@@ -695,6 +721,26 @@ footer {
         margin-top: 4rem;
         margin-bottom: 4rem;
     }
+
+        .new:nth-of-type(2) {
+           display: none;
+        }
+
+        .new:nth-of-type(3) {
+            display: none;
+         }
+
+        #CollabForm .addSection{
+            margin-bottom: 1rem;
+        }
+
+            .addSection:nth-of-type(2) {
+                display: none;
+            }
+
+            .addSection:nth-of-type(3) {
+                display: none;
+            }  
 
         .CollabBlock img{
             width: 200px;

@@ -7,6 +7,7 @@ New Collab
 
 <script src="{% static 'Core/clearPreview.js' %}"></script>
 <script src="{% static 'Core/scriptNew.js' %}" defer></script>
+<script src="{% static 'Core/scriptCommon.js' %}" defer></script>
 
 <main id="NewCollabWrapper">
   <h1>New Collab</h1>
@@ -17,7 +18,7 @@ New Collab
     {{ formset.management_form }}
 
       {% for form in formset %}
-    <section class="CollabBlock">
+    <section class="CollabBlock new">
       <section class="wrapper-column">
         <span> Description: </span>
          {{ form.description }}
@@ -34,6 +35,7 @@ New Collab
         </section>
       </section>
     </section>
+    <button class="btn addSection" type="button">add section</button>
 
   {% endfor %}
     <span id="introduction_error_msg" class="error_msg"> </span>

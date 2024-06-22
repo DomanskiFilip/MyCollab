@@ -48,24 +48,6 @@ window.onload = function() {
   });
 };
 
-// Get all checkboxes
-var checkboxes = document.querySelectorAll('.checkbox_is_main');
-
-// Add event listener to each checkbox
-checkboxes.forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
-        // When a checkbox is checked
-        if (this.checked) {
-            // Uncheck all other checkboxes
-            checkboxes.forEach(function(otherCheckbox) {
-                if (otherCheckbox !== checkbox) {
-                    otherCheckbox.checked = false;
-                }
-            });
-        }
-    });
-});
-
 
 document.querySelectorAll('input[type="file"]').forEach(function(input) {
   input.addEventListener('change', function() {

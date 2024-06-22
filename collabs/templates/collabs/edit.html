@@ -6,6 +6,7 @@ Edit Collab
 {% block content %}
 
 <script src="{% static 'Core/scriptEdit.js' %}" defer></script>
+<script src="{% static 'Core/scriptCommon.js' %}" defer></script>
 
 <main id="NewCollabWrapper">
     <form method="post" enctype="multipart/form-data" id="CollabForm">
@@ -35,13 +36,13 @@ Edit Collab
                         </section>
                         {% else %}
                         <section class="wrapper-row">
-                            {{ form.is_main.label_tag }}
-                            {{ form.is_main }}
-                        </section>
-                        <section class="wrapper-row">
                         {{ form.image.label_tag }}
                         {{ form.image }}
                         <span id="preview{{ forloop.counter0 }}"></span>
+                        </section>
+                        <section class="wrapper-row">
+                            {{ form.is_main.label_tag }}
+                            {{ form.is_main }}
                         </section>
                         {% endif %}
                 </section>

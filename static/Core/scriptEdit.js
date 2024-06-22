@@ -65,23 +65,3 @@ window.onload = function() {
         });
     }
 }
-
-
-
-// Get all checkboxes
-var checkboxes_main = document.querySelectorAll('.checkbox_is_main');
-
-// Add event listener to each checkbox
-checkboxes_main .forEach(function(checkbox) {
-    checkbox.addEventListener('change', function() {
-        // When a checkbox is checked
-        if (this.checked) {
-            // Uncheck all other checkboxes
-            checkboxes_main .forEach(function(otherCheckbox) {
-                if (otherCheckbox !== checkbox) {
-                    otherCheckbox.checked = false;
-                }
-            });
-        }
-    });
-});
