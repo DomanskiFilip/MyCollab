@@ -42,3 +42,57 @@ document.addEventListener("DOMContentLoaded", function() {
         }).catch(error => console.error('Error fetching data:', error));
     });
 });
+
+//tag list
+function showTagList() {
+    let verticalLists = document.querySelectorAll('.vertical_list');
+        verticalLists.forEach(function(verticalLists) {
+            if (verticalLists.classList.contains('open')) {
+                verticalLists.classList.remove('open');
+            } else {
+                verticalLists.classList.add('open');
+            }
+    });
+}
+
+function removeDuplicateTags() {
+    // Select all vertical lists
+    let verticalLists = document.querySelectorAll('.vertical_list');
+    verticalLists.forEach(function(verticalList) {
+        let seenTags = {}; // Object to keep track of tags that have been seen
+        let tags = verticalList.querySelectorAll('span'); // Assuming each tag is wrapped in a <span>
+        tags.forEach(function(tag) {
+            let tagLabel = tag.querySelector('label').textContent; // Get the text content of the label
+            if (seenTags[tagLabel]) {
+                // If the tag has been seen, remove the current tag span
+                tag.remove();
+            } else {
+                // If the tag hasn't been seen, mark it as seen
+                seenTags[tagLabel] = true;
+            }
+        });
+    });
+}
+
+removeDuplicateTags();
+
+
+var checkbox_tags = document.querySelectorAll('.vertical_list input[type="checkbox"]');
+
+checkbox_tags.forEach(function(checkbox) {
+    checkbox.addEventListener('change', function() {
+        if (this.checked) {
+          var label = document.querySelector('label[for="' + this.id + '"]');
+          if (label) {
+            label.classList.add('checked');
+          } else {
+            console.log('Label not found for:', this.id);
+          }
+        } else {
+          var label = document.querySelector('label[for="' + this.id + '"]');
+          if (label) {
+            label.classList.remove('checked');
+          }
+        }
+    });
+});

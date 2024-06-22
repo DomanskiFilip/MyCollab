@@ -1,8 +1,14 @@
 from django import forms
-from .models import Collab, CollabImage
+from .models import Collab, CollabImage, CollabTag
 from django.utils.html import format_html, escape
 from django.utils.safestring import mark_safe
 
+class CollabFilterForm(forms.Form):
+    tags = forms.ModelMultipleChoiceField(
+        queryset=CollabTag.objects.all(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False
+    )
 
 class CollabForm(forms.ModelForm):
     class Meta:

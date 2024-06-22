@@ -1,9 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .models import Collab, CollabImage
-from .forms import CollabForm, CollabImageFormSet
-from django.shortcuts import redirect
-from django.core.exceptions import PermissionDenied
-from django.forms import inlineformset_factory
+from .models import Collab, CollabImage, CollabTag
+from .forms import CollabForm, CollabImageFormSet, CollabFilterForm
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.http import require_POST
 from .forms import CollabForm, CollabImageFormSet
@@ -12,8 +9,6 @@ from .wordFilter import filter_bad_words
 from django.contrib import messages
 from django.db.models import Q
 from django.http import JsonResponse
-from django.core import serializers
-from django.core.serializers import serialize
 from django.conf import settings
 from django.utils.dateformat import DateFormat
 from django.utils.formats import get_format
