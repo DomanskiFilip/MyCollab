@@ -22,7 +22,7 @@ BAD_WORDS = [
     "cazzo", "cazz", "coglione", "coglio", "cornuto",
     "culo", "fava", "fica", "figa", "frocio", "gnocca", "merda",
     "minchia", "mona", "puttana", "ricchione", "stronzo", "troia",
-    "vaffanculio", "zoccola", "faggot", "fagot",
+    "vaffanculio", "zoccola", "faggot", "fagot", "nigg"
     ]  # Add your list of bad words here
 
 def filter_bad_words(text):
