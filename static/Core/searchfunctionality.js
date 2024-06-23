@@ -9,11 +9,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
     searchBar.addEventListener('input', function() {
         const selectedTags = Array.from(document.querySelectorAll('input[type="checkbox"][name="tags"]:checked')).map(checkbox => checkbox.value);
-        // Join the selected tags with a comma to form a part of the query string
-        const tagsQueryString = selectedTags.join(',');
-    
-        // Include the tags in the search URL
-        const searchUrl = `/collabs/collab_list/?search=${searchBar.value}&tags=${tagsQueryString}`;
+        if(selectedTags.length > 0) {
+            const tagsQueryString = selectedTags.join('&');
+            let searchUrl = `/collabs/collab_list/?search=${searchBar.value}&tags=${tagsQueryString}`;
+        }
+        let searchUrl = `/collabs/collab_list/?search=${searchBar.value}`;
         fetch(searchUrl)
             .then(response => response.json())
             .then(data => {
@@ -122,7 +122,6 @@ document.addEventListener("DOMContentLoaded", function() {
         fetch(fetchUrl)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
                 const collabs = typeof data.collabs_withImg === 'string' ? JSON.parse(data.collabs_withImg) : data.collabs_withImg;
                 document.getElementById('collabListWrapper').innerHTML = '';
                 collabs.forEach(collab => {

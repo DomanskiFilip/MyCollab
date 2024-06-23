@@ -27,7 +27,6 @@ def collab_list(request):
     elif selected_tags:
         # Filter collaborations by selected tags if they exist
         collabs_withImg = Collab.objects.filter(tags__name__in=selected_tags).distinct()
-        print(collabs_withImg)
     elif search_query:
         # Apply search query filter only if no tags are selected
         collabs_withImg = Collab.objects.filter(
