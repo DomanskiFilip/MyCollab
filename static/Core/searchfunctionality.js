@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function() {
             queryString += (queryString ? '&' : '') + `search=${encodeURIComponent(searchQuery)}`;
         }
         let fetchUrl = queryString ? `/collabs/collab_list/?${queryString}` : `/collabs/collab_list/`;
-
+        console.log(fetchUrl);
         fetch(fetchUrl)
             .then(response => response.json())
             .then(data => {

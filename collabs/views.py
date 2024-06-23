@@ -7,29 +7,34 @@ from .forms import CollabForm, CollabImageFormSet
 from .models import Collab, CollabImage
 from .wordFilter import filter_bad_words
 from django.contrib import messages
-from django.db.models import Q
+from django.db.models import Q, Count
 from django.http import JsonResponse
 from django.conf import settings
 from django.utils.dateformat import DateFormat
 from django.utils.formats import get_format
-from django.db.models import Count
 
 def collab_list(request):
     selected_tags = request.GET.getlist('tags')
     search_query = request.GET.get('search', '')
     base_query = Collab.objects.all()
 
-    if search_query:
-        base_query = base_query.filter(
+    if selected_tags and search_query:
+        base_query = Collab.objects.filter(
             Q(title__icontains=search_query) | 
-            Q(title__iregex=r'\b{}\b'.format(search_query))
-        )
-
-    if selected_tags:
-        base_query = base_query.filter(tags__name__in=selected_tags).distinct()
+            Q(title__iregex=r'\b{}\b'.format(search_query)),
+            tags__name__in=selected_tags
+        ).distinct().annotate(matched_tags_count=Count('tags', filter=Q(tags__name__in=selected_tags))).filter(matched_tags_count=len(selected_tags))
+    elif selected_tags:
+        base_query = Collab.objects.filter(tags__name__in=selected_tags).distinct()
         base_query = base_query.annotate(matched_tags_count=Count('tags', filter=Q(tags__name__in=selected_tags)))
         base_query = base_query.filter(matched_tags_count=len(selected_tags))
-
+    elif search_query:
+        base_query = Collab.objects.filter(
+            Q(title__icontains=search_query) | 
+            Q(title__iregex=r'\b{}\b'.format(search_query))
+        ).distinct()
+    else:
+        base_query = Collab.objects.all()
 
     collabs_withImg = base_query.distinct()
 
@@ -37,8 +42,11 @@ def collab_list(request):
     for collab in collabs_withImg:
         readable_date = DateFormat(collab.created_at).format(get_format('DATE_FORMAT'))
 
+        # Filter for the main image
         main_image = collab.images.filter(is_main=True).first()
         main_image_url = request.build_absolute_uri(settings.MEDIA_URL + main_image.image.name) if main_image else None
+
+        # Get tags
         tags = [tag.name for tag in collab.tags.all()]
 
         collab_dict = {
