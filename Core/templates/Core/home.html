@@ -13,13 +13,13 @@ Index
             <input type="text" name="search" placeholder="search for a collab" maxlength="100" id="searchBar" value="{{ request.GET.search }}">
         </form>
 
-        <form method="get" id="tagFilterForm">
+        <form action="{% url 'collabs:collab_list' %}" method="get" id="tagFilterForm">
             <button id="toggleListButton" class="btn" onclick="showTagList()" type="button">Toggle Tags ▽</button>
             <span class="vertical_list">
                 {% for collab, main_image in collabs_withImg %}
                     {% for tag in collab.tags.all %}
                     <span>  
-                            <label for="tag_{{ tag.id }}">{{ tag.name }}<input type="checkbox" id="tag_{{ tag.id }}" name="tags" value="{{ tag.id }}"></label>
+                            <label for="tag_{{ tag.id }}">{{ tag.name }}<input type="checkbox" id="tag_{{ tag.id }}" name="tags" value="{{ tag.name }}"></label>
                     </span>  
                     {% endfor %}
                 {% endfor %}

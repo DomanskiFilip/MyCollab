@@ -14,13 +14,28 @@ from django.utils.dateformat import DateFormat
 from django.utils.formats import get_format
 
 def collab_list(request):
+    selected_tags = request.GET.getlist('tags')
     search_query = request.GET.get('search', '')
-    if search_query:
+
+    if selected_tags and search_query:
+        # Filter collaborations by selected tags and search query in title if both exist
+       collabs_withImg = Collab.objects.filter(
+        Q(title__icontains=search_query) | 
+        Q(title__iregex=r'\b{}\b'.format(search_query)),
+        tags__name__in=selected_tags
+    ).distinct()
+    elif selected_tags:
+        # Filter collaborations by selected tags if they exist
+        collabs_withImg = Collab.objects.filter(tags__name__in=selected_tags).distinct()
+        print(collabs_withImg)
+    elif search_query:
+        # Apply search query filter only if no tags are selected
         collabs_withImg = Collab.objects.filter(
             Q(title__icontains=search_query) | 
             Q(title__iregex=r'\b{}\b'.format(search_query))
         ).distinct()
     else:
+        # If no tags and no search query, return all collaborations
         collabs_withImg = Collab.objects.all()
 
     collabs_withImg_list = []
@@ -35,7 +50,7 @@ def collab_list(request):
         tags = [tag.name for tag in collab.tags.all()]
 
         collab_dict = {
-            "id": collab.pk,
+            "pk": collab.pk,
             "title": collab.title,
             "introduction": "" if main_image else collab.introduction,
             "main_image": {"src": main_image_url} if main_image_url else "",

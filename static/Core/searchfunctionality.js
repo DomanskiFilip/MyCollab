@@ -4,21 +4,23 @@ document.addEventListener("DOMContentLoaded", function() {
     document.querySelector('form').addEventListener('submit', function(event) {
         event.preventDefault();
         // Trigger the search functionality
-        searchBar.dispatchEvent(new Event('input'));
+        searchBar.addEventListener('input', fetchCollabsWithSelectedTags);
     });
 
     searchBar.addEventListener('input', function() {
-        // Assuming you have a way to get the correct URL for the fetch call
-        const searchUrl = `/collabs/collab_list/?search=${searchBar.value}`;
+        const selectedTags = Array.from(document.querySelectorAll('input[type="checkbox"][name="tags"]:checked')).map(checkbox => checkbox.value);
+        // Join the selected tags with a comma to form a part of the query string
+        const tagsQueryString = selectedTags.join(',');
+    
+        // Include the tags in the search URL
+        const searchUrl = `/collabs/collab_list/?search=${searchBar.value}&tags=${tagsQueryString}`;
         fetch(searchUrl)
             .then(response => response.json())
             .then(data => {
-                // Check if data.collabs_withImg is a string that needs parsing
                 const collabs = typeof data.collabs_withImg_list === 'string' ? JSON.parse(data.collabs_withImg) : data.collabs_withImg;
                 document.getElementById('collabListWrapper').innerHTML = '';
                 collabs.forEach(collab => {        
                 const collabElement = document.createElement('a');
-                // Ensure the URL is correctly formed
                 collabElement.href = `/collabs/${collab.pk}`;
                 collabElement.id = "collabInfoBar";
                 collabElement.innerHTML = `
@@ -95,4 +97,56 @@ checkbox_tags.forEach(function(checkbox) {
           }
         }
     });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        fetchCollabsWithSelectedTags();
+    });
+
+    document.querySelectorAll('input[type="checkbox"][name="tags"]').forEach(checkbox => {
+        checkbox.addEventListener('change', fetchCollabsWithSelectedTags);
+    });
+
+    function fetchCollabsWithSelectedTags() {
+        let checkedBoxes = document.querySelectorAll('input[type="checkbox"][name="tags"]:checked');
+        let queryString = Array.from(checkedBoxes).map(checkbox => `tags=${checkbox.value}`).join('&');
+        let searchQuery = document.getElementById('searchBar').value;
+        if (searchQuery) {
+            queryString += (queryString ? '&' : '') + `search=${encodeURIComponent(searchQuery)}`;
+        }
+        let fetchUrl = queryString ? `/collabs/collab_list/?${queryString}` : `/collabs/collab_list/`;
+        console.log(fetchUrl);
+
+        fetch(fetchUrl)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                const collabs = typeof data.collabs_withImg === 'string' ? JSON.parse(data.collabs_withImg) : data.collabs_withImg;
+                document.getElementById('collabListWrapper').innerHTML = '';
+                collabs.forEach(collab => {
+                    const collabElement = document.createElement('a');
+                    collabElement.href = `/collabs/${collab.pk}`;
+                    collabElement.id = "collabInfoBar";
+                    collabElement.innerHTML = `
+                    <section id="collabInfoBarHeader">
+                        <h2>${collab.title}</h2>
+                    </section>
+                    <section class="collabInfoBarWrapper">
+                        <img src="${collab.main_image.src}" alt="" onerror="this.style.display='none'">
+                        <span> ${collab.introduction} </span>
+                    </section>
+                    <section class="collabInfoBarWrapper" id="tagsBox">
+                        <h2>Tags:</h2>
+                        <ul>
+                            ${collab.tags.map(tag => `<li>${tag}</li>`).join('')}
+                        </ul>
+                    </section>
+                    <p>Created: ${collab.created_at}</p>
+                    `;
+                    document.getElementById('collabListWrapper').appendChild(collabElement);
+                });
+            }).catch(error => console.error('Error fetching data:', error));
+    }
 });
