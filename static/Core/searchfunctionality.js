@@ -1,50 +1,46 @@
+
+
 document.addEventListener("DOMContentLoaded", function() {
     const searchBar = document.getElementById('searchBar');
-    // Prevent the form from submitting traditionally
-    document.querySelector('form').addEventListener('submit', function(event) {
-        event.preventDefault();
-        // Trigger the search functionality
-        searchBar.addEventListener('input', fetchCollabsWithSelectedTags);
-    });
-
     searchBar.addEventListener('input', function() {
         const selectedTags = Array.from(document.querySelectorAll('input[type="checkbox"][name="tags"]:checked')).map(checkbox => checkbox.value);
+        let searchUrl;
         if(selectedTags.length > 0) {
             const tagsQueryString = selectedTags.join('&');
-            let searchUrl = `/collabs/collab_list/?search=${searchBar.value}&tags=${tagsQueryString}`;
+            searchUrl = `/collabs/collab_list/?search=${searchBar.value}&tags=${tagsQueryString}`;
+        } else {
+            searchUrl = `/collabs/collab_list/?search=${searchBar.value}`;
         }
-        let searchUrl = `/collabs/collab_list/?search=${searchBar.value}`;
         fetch(searchUrl)
             .then(response => response.json())
             .then(data => {
                 const collabs = typeof data.collabs_withImg_list === 'string' ? JSON.parse(data.collabs_withImg) : data.collabs_withImg;
                 document.getElementById('collabListWrapper').innerHTML = '';
                 collabs.forEach(collab => {        
-                const collabElement = document.createElement('a');
-                collabElement.href = `/collabs/${collab.pk}`;
-                collabElement.id = "collabInfoBar";
-                collabElement.innerHTML = `
-                <section id="collabInfoBarHeader">
-                    <h2>${collab.title}</h2>
-                </section>
-                <section class="collabInfoBarWrapper">
-                    <img src="${collab.main_image.src}" alt="" onerror="this.style.display='none'">
-                    <span> ${collab.introduction} </span>
-                </section>
-                <section class="collabInfoBarWrapper" id="tagsBox">
-                    <h2>Tags:</h2>
-                    <ul>
-                        ${collab.tags.map(tag => `<li>${tag}</li>`).join('')}
-                    </ul>
-                </section>
-                <p>Created: ${collab.created_at}</p>
-                `;
-                document.getElementById('collabListWrapper').appendChild(collabElement);
-                            });
-        }).catch(error => console.error('Error fetching data:', error));
+                    const collabElement = document.createElement('a');
+                    collabElement.href = `/collabs/${collab.pk}`;
+                    collabElement.id = "collabInfoBar";
+                    collabElement.innerHTML = `
+                    <section id="collabInfoBarHeader">
+                        <h2>${collab.title}</h2>
+                    </section>
+                    <section class="collabInfoBarWrapper">
+                        <img src="${collab.main_image.src}" alt="" onerror="this.style.display='none'">
+                        <span> ${collab.introduction} </span>
+                    </section>
+                    <section class="collabInfoBarWrapper" id="tagsBox">
+                        <h2>Tags:</h2>
+                        <ul>
+                            ${collab.tags.map(tag => `<li>${tag}</li>`).join('')}
+                        </ul>
+                    </section>
+                    <p>Created: ${collab.created_at}</p>
+                    `;
+                    document.getElementById('collabListWrapper').appendChild(collabElement);
+                });
+            }).catch(error => console.error('Error fetching data:', error));
     });
 });
-
 //tag list
 function showTagList() {
     let verticalLists = document.querySelectorAll('.vertical_list');
@@ -117,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function() {
             queryString += (queryString ? '&' : '') + `search=${encodeURIComponent(searchQuery)}`;
         }
         let fetchUrl = queryString ? `/collabs/collab_list/?${queryString}` : `/collabs/collab_list/`;
-        console.log(fetchUrl);
 
         fetch(fetchUrl)
             .then(response => response.json())

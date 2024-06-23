@@ -12,40 +12,33 @@ from django.http import JsonResponse
 from django.conf import settings
 from django.utils.dateformat import DateFormat
 from django.utils.formats import get_format
+from django.db.models import Count
 
 def collab_list(request):
     selected_tags = request.GET.getlist('tags')
     search_query = request.GET.get('search', '')
+    base_query = Collab.objects.all()
 
-    if selected_tags and search_query:
-        # Filter collaborations by selected tags and search query in title if both exist
-       collabs_withImg = Collab.objects.filter(
-        Q(title__icontains=search_query) | 
-        Q(title__iregex=r'\b{}\b'.format(search_query)),
-        tags__name__in=selected_tags
-    ).distinct()
-    elif selected_tags:
-        # Filter collaborations by selected tags if they exist
-        collabs_withImg = Collab.objects.filter(tags__name__in=selected_tags).distinct()
-    elif search_query:
-        # Apply search query filter only if no tags are selected
-        collabs_withImg = Collab.objects.filter(
+    if search_query:
+        base_query = base_query.filter(
             Q(title__icontains=search_query) | 
             Q(title__iregex=r'\b{}\b'.format(search_query))
-        ).distinct()
-    else:
-        # If no tags and no search query, return all collaborations
-        collabs_withImg = Collab.objects.all()
+        )
+
+    if selected_tags:
+        base_query = base_query.filter(tags__name__in=selected_tags).distinct()
+        base_query = base_query.annotate(matched_tags_count=Count('tags', filter=Q(tags__name__in=selected_tags)))
+        base_query = base_query.filter(matched_tags_count=len(selected_tags))
+
+
+    collabs_withImg = base_query.distinct()
 
     collabs_withImg_list = []
     for collab in collabs_withImg:
         readable_date = DateFormat(collab.created_at).format(get_format('DATE_FORMAT'))
 
-        # Filter for the main image
         main_image = collab.images.filter(is_main=True).first()
         main_image_url = request.build_absolute_uri(settings.MEDIA_URL + main_image.image.name) if main_image else None
-
-        # Get tags
         tags = [tag.name for tag in collab.tags.all()]
 
         collab_dict = {
