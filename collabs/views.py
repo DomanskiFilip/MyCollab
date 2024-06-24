@@ -12,11 +12,13 @@ from django.http import JsonResponse
 from django.conf import settings
 from django.utils.dateformat import DateFormat
 from django.utils.formats import get_format
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def collab_list(request):
     selected_tags = request.GET.getlist('tags')
     search_query = request.GET.get('search', '')
-    base_query = Collab.objects.all()
+    page_number = request.GET.get('page', 1)
+    base_query = Collab.objects.all().distinct()
 
     if selected_tags and search_query:
         base_query = Collab.objects.filter(
@@ -38,7 +40,16 @@ def collab_list(request):
     else:
         base_query = Collab.objects.all()
 
-    collabs_withImg = base_query.distinct()
+    paginator = Paginator(base_query, 15)
+    try:
+        base_query = paginator.page(page_number)
+    except PageNotAnInteger:
+        base_query = paginator.page(1)
+    except EmptyPage:
+        base_query = paginator.page(paginator.num_pages)
+   
+
+    collabs_withImg = base_query
 
     collabs_withImg_list = []
     for collab in collabs_withImg:
@@ -60,7 +71,7 @@ def collab_list(request):
             "created_at": readable_date,
         }
         collabs_withImg_list.append(collab_dict)
-    return JsonResponse({'collabs_withImg': collabs_withImg_list})
+    return JsonResponse({'collabs_withImg': collabs_withImg_list,  'total_pages': paginator.num_pages})
 
 def collab(request, pk):
     collab = Collab.objects.get(pk=pk)

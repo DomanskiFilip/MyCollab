@@ -3,30 +3,7 @@ from collabs.models import Collab, CollabTag
 from django.shortcuts import redirect
 from django.contrib.auth import logout
 from django.contrib.auth.decorators import login_required
-
-
-# NOT THIS
-# def home(request):
-#     active_collabs = Collab.objects.filter(active=True)
-#     active_collabs_with_image = []
-
-#     for collab in active_collabs:
-#         main_image = None
-#         if hasattr(collab, 'collabimage_set'):
-#             main_image = collab.collabimage_set.filter(is_main=True).first()
-#         else:
-#             print('Collab has no images')
-#         active_collabs_with_image.append((collab, main_image))
-        
-#     return render(
-#         request,
-#         'Core/index.html',
-#         {'collabs_withImg': active_collabs_with_image}
-#     )
-
-
  
-# THIS   
 def home(request):
     active_collabs = Collab.objects.filter(active=True)
     active_collabs_with_image = []

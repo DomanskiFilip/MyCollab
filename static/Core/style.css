@@ -254,6 +254,7 @@ footer {
 
     #toggleListButton{
         position: relative;
+        margin-bottom: 0;
         border-radius: 10px 10px 0 0;
     }
 
@@ -265,7 +266,7 @@ footer {
         padding: 0;
         list-style-type: none;
         position: absolute;
-        top: 20.9rem;
+        top: 20.5rem;
         background-color: var(--tag-bg);
         z-index: 10000;
         overflow-y: auto;
@@ -302,7 +303,7 @@ footer {
 
 #collabListWrapper {
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto;
     width: 99%;
     height: 90%;
     padding-left: 1rem;
@@ -318,8 +319,8 @@ footer {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        width: 24vw;
-        height: 34vh;
+        width: 19vw;
+        height: 30vh;
         text-decoration: none;
         color: var(--text); 
         margin-bottom: 1rem;
@@ -423,6 +424,19 @@ footer {
                     .collabInfoBarWrapper ul li:hover {
                         background-color: var(--tag-bg-hover);
                     }
+
+    #paginationContainer {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+
+        #paginationContainer .btn.active{
+            background-color: var(--tag-bg-hover);
+        }
+
 
 /* css for collab.html */
 
@@ -581,9 +595,9 @@ footer {
     }
 
 
-        .btn:last-of-type {
-            margin-top: 1rem;
-        }
+#collabWrapper a.btn {
+    margin-top: 1rem;
+}
 /* css for login.html */
 
 #SignInWrapper {
