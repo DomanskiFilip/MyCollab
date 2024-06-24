@@ -23,7 +23,9 @@ def collab_list(request):
             Q(title__icontains=search_query) | 
             Q(title__iregex=r'\b{}\b'.format(search_query)),
             tags__name__in=selected_tags
-        ).distinct().annotate(matched_tags_count=Count('tags', filter=Q(tags__name__in=selected_tags))).filter(matched_tags_count=len(selected_tags))
+        ).distinct()
+        base_query = base_query.annotate(matched_tags_count=Count('tags', filter=Q(tags__name__in=selected_tags)))
+        base_query = base_query.filter(matched_tags_count=len(selected_tags))
     elif selected_tags:
         base_query = Collab.objects.filter(tags__name__in=selected_tags).distinct()
         base_query = base_query.annotate(matched_tags_count=Count('tags', filter=Q(tags__name__in=selected_tags)))
